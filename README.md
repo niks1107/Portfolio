@@ -36,22 +36,3 @@ npm run build
 ```bash
 npm run preview
 ```
-
-### 3️⃣ Deploy on Vercel
-1. Create a free account at [Vercel](https://vercel.com/).  
-2. Click **New Project → Import Git Repository**.  
-3. Select your project repo.  
-4. Vercel auto-detects a Vite React project.  
-5. Click **Deploy**.  
-6. Your portfolio is live at `https://<your-project-name>.vercel.app`.
-
-### 4️⃣ Deploy on Netlify
-1. Create a free account at [Netlify](https://www.netlify.com/).  
-2. Click **Add New Site → Import from Git**.  
-3. Choose your repository.  
-4. Set **Build Command:** `npm run build`  
-5. Set **Publish Directory:** `dist`  
-6. Click **Deploy Site**.  
-7. Your portfolio is live at `https://<your-site-name>.netlify.app`.
-
----
