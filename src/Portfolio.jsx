@@ -1,6 +1,8 @@
 import { useState, useEffect, useMemo } from "react";
 import { motion } from "framer-motion";
 import { Sun, Moon } from "lucide-react";
+import { FaInstagram, FaLinkedin, FaTwitter, FaMedium } from "react-icons/fa";
+
 
 const GITHUB_USERNAME_DEFAULT = "niks1107";
 
@@ -135,8 +137,24 @@ export default function Portfolio() {
           <h3 className="text-2xl font-bold mb-6 text-ocean-300">Contact</h3>
           <p className="text-neutral-300">Feel free to reach out via email: <a className="text-ocean-300" href="mailto:nick@example.com">nick@example.com</a></p>
         </section>
+<footer className="py-8 text-center text-neutral-500 flex flex-col items-center gap-3">
+  <div>© {new Date().getFullYear()} Nick Amraniya</div>
+  <div className="flex gap-4">
+    <a href="https://www.instagram.com/nevilamraniya07" target="_blank" rel="noreferrer" className="hover:text-ocean-300">
+      <FaInstagram size={20} />
+    </a>
+    <a href="https://www.linkedin.com/in/nevil-amraniya-51b202317/" target="_blank" rel="noreferrer" className="hover:text-ocean-300">
+      <FaLinkedin size={20} />
+    </a>
+    <a href="https://twitter.com/nevilamraniya01" target="_blank" rel="noreferrer" className="hover:text-ocean-300">
+      <FaTwitter size={20} />
+    </a>
+    <a href="https://medium.com/@qnztrrfn" target="_blank" rel="noreferrer" className="hover:text-ocean-300">
+      <FaMedium size={20} />
+    </a>
+  </div>
+</footer>
 
-        <footer className="py-8 text-center text-neutral-500">© {new Date().getFullYear()} Nick Amraniya</footer>
       </main>
     </div>
   );
