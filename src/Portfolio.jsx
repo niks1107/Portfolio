@@ -41,7 +41,7 @@ export default function Portfolio() {
       {/* Navbar */}
       <nav className="fixed top-0 w-full bg-[#0f111a]/90 dark:bg-[#0f111a]/95 border-b border-neutral-800 z-50">
         <div className="max-w-6xl mx-auto flex justify-between items-center px-4 py-3">
-          <h1 className="text-xl font-bold text-ocean-300">Nick Amraniya</h1>
+          <h1 className="text-xl font-bold text-ocean-300">Nevil Amraniya</h1>
           <div className="flex items-center space-x-6">
             <a href="#about" className="hover:text-ocean-300">About</a>
             <a href="#skills" className="hover:text-ocean-300">Skills</a>
@@ -59,7 +59,7 @@ export default function Portfolio() {
         {/* Hero */}
         <section className="h-[70vh] flex flex-col justify-center items-center text-center px-6">
           <motion.h2 initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.8 }} className="text-4xl md:text-5xl font-bold text-ocean-300">
-            Hi, I'm Nick Amraniya
+            Hi, I'm Nevil Amraniya
           </motion.h2>
           <p className="mt-4 text-lg max-w-2xl text-neutral-300">Fresher AI/ML Enthusiast based in Essen, Germany.</p>
         </section>
@@ -136,7 +136,7 @@ export default function Portfolio() {
           <p className="text-neutral-300">Feel free to reach out via email: <a className="text-ocean-300" href="mailto:niksofficial14@gmail.com">niksofficial14@gmail.com</a></p>
         </section>
 
-        <footer className="py-8 text-center text-neutral-500">© {new Date().getFullYear()} Nick Amraniya</footer>
+        <footer className="py-8 text-center text-neutral-500">© {new Date().getFullYear()} Nevil Amraniya</footer>
       </main>
     </div>
   );
