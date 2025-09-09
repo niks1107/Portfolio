@@ -149,7 +149,7 @@ export default function Portfolio() {
     <a href="https://twitter.com/nevilamraniya01" target="_blank" rel="noreferrer" className="hover:text-ocean-300">
       <FaTwitter size={20} />
     </a>
-    <a href="https://medium.com/  " target="_blank" rel="noreferrer" className="hover:text-ocean-300">
+    <a href="https://medium.com/@qnztrrfn  " target="_blank" rel="noreferrer" className="hover:text-ocean-300">
       <FaMedium size={20} />
     </a>
   </div>
