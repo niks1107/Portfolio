@@ -81,7 +81,7 @@ export default function Portfolio() {
           <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 gap-4">
             {[
               "Python", "NumPy", "Pandas", "Flask",
-              "Java", "scikit-learn", "TensorFlow", "PY Torch",
+              "Java", "scikit-learn", "TensorFlow", "PyTorch",
               "Keras", "Matplotlib", "Statistics", "Calculus"
             ].map((skill) => (
               <div key={skill} className="bg-surface rounded-xl p-4 text-center text-neutral-200 border border-neutral-800">
