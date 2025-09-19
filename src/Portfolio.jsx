@@ -63,10 +63,10 @@ export default function Portfolio() {
           <motion.h2 initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.8 }} className="text-4xl md:text-5xl font-bold text-ocean-300">
             Hi, I'm Nevil Amraniya
           </motion.h2>
-          <p className="mt-4 text-lg max-w-2xl text-neutral-300">AI/ML Enthusiast</p>
+          <p className="mt-4 text-lg max-w-2xl text-neutral-300">Fresher AI/ML Enthusiast based in Essen, Germany.</p>
         </section>
-        { /* Fresher AI/ML Enthusiast based in Essen, Germany */ }
-        {/* About */ }
+
+        {/* About */}
         <section id="about" className="max-w-6xl mx-auto px-6 py-16">
           <h3 className="text-2xl font-bold mb-4 text-ocean-300">About Me</h3>
           <p className="text-neutral-300 leading-relaxed">
@@ -135,7 +135,20 @@ export default function Portfolio() {
         {/* Contact */}
         <section id="contact" className="max-w-6xl mx-auto px-6 py-16">
           <h3 className="text-2xl font-bold mb-6 text-ocean-300">Contact</h3>
-          <p className="text-neutral-300">Feel free to reach out via email: <a className="text-ocean-300" href="mailto:Nevilamraniya01@gmail.com">Nevilamraniya01@gmail.com</a></p>
+          <p className="text-neutral-300">Feel free to reach out via email: <a className="text-ocean-300" href="mailto:Nevil@example.com">Nevil@example.com</a></p>
+       <center>
+
+        <div className="mt-4">
+  <a
+    href="/resume.pdf"
+    download="Nik-Amraniya-Resume.pdf"
+    className="px-4 py-2 bg-blue-600 text-white rounded-xl shadow hover:bg-blue-700 transition"
+    >
+    Download Resume
+  </a>
+</div>
+    </center>
+
         </section>
 <footer className="py-8 text-center text-neutral-500 flex flex-col items-center gap-3">
   <div>© {new Date().getFullYear()} Nevil Amraniya</div>
@@ -153,6 +166,7 @@ export default function Portfolio() {
       <FaMedium size={20} />
     </a>
   </div>
+  
 </footer>
 
       </main>
