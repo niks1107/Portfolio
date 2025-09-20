@@ -152,8 +152,8 @@ export default function Portfolio() {
           <h3 className={`text-2xl font-bold mb-6 ${theme === "dark" ? "text-ocean-500" : "text-black"}`}>Contact</h3>
           <p>
             Feel free to reach out via email:{" "}
-            <a href="mailto:framesofnevil@gmail.com" className={`${theme === "dark" ? "text-ocean-300" : "text-black"}`}>
-              framesofnevil@gmail.com
+            <a href="mailto:nevilamraniya01@gmail.com" className={`${theme === "dark" ? "text-ocean-300" : "text-black"}`}>
+              nevilamraniya01@gmail.com
             </a>
           </p>
         </section>
