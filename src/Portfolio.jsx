@@ -140,7 +140,7 @@ export default function Portfolio() {
 
         <div className="mt-4">
   <a
-    href="src/Nik-Amraniya-Resume.pdf"
+    href="/src/Nik-Amraniya-Resume.pdf"
     download="Nik-Amraniya-Resume.pdf"
     className="px-4 py-2 bg-blue-600 text-white rounded-xl shadow hover:bg-blue-700 transition"
     >
