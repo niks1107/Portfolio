@@ -15,12 +15,12 @@ export default {
           600: "#00acc1",
           700: "#0097a7",
           800: "#00838f",
-          900: "#006064"
+          900: "#006064",
         },
-        background: "#0f111a",
-        surface: "#1e2130"
-      }
-    }
+        background: "#0f111a", // dark background
+        surface: "#1e2130", // dark surface
+      },
+    },
   },
   plugins: [],
 };
