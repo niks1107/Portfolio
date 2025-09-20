@@ -135,7 +135,7 @@ export default function Portfolio() {
         {/* Contact */}
         <section id="contact" className="max-w-6xl mx-auto px-6 py-16">
           <h3 className="text-2xl font-bold mb-6 text-ocean-300">Contact</h3>
-          <p className="text-neutral-300">Feel free to reach out via email: <a className="text-ocean-300" href="mailto:Nevil@example.com">Nevil@example.com</a></p>
+          <p className="text-neutral-300">Feel free to reach out via email: <a className="text-ocean-300" href="mailto:framesofnevil@gmail.com">framesofnevil@gmail.com</a></p>
        <center>
 
         <div className="mt-4">
