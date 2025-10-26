@@ -84,7 +84,7 @@ export default function Portfolio() {
               "Java", "scikit-learn", "TensorFlow", "PyTorch",
               "Keras", "Matplotlib", "Statistics", "Calculus"
             ].map((skill) => (
-              <div key={skill} className="bg-surface rounded-xl p-4 text-center text-neutral-200 border border-neutral-800">
+              <div key={skill} className="bg-surface rounded-xl p-4 hover:border-ocean-300 text-center text-neutral-200 border border-neutral-800">
                 {skill}
               </div>
             ))}
@@ -95,15 +95,15 @@ export default function Portfolio() {
         <section id="education" className="max-w-6xl mx-auto px-6 py-16">
           <h3 className="text-2xl font-bold mb-6 text-ocean-300">Education</h3>
           <div className="space-y-6">
-            <div className="rounded-xl p-5 bg-surface border border-neutral-800">
-              <div className="font-medium">BSc in Computer Science and Digital Technologies</div>
+            <div className="rounded-xl p-5 bg-surface hover:border-ocean-300 border border-neutral-800">
+              <div className="font-medium ">BSc in Computer Science and Digital Technologies</div>
               <div className="text-sm text-neutral-400">FOM University of Applied Science, Essen, Germany (2025–2028)</div>
             </div>
-            <div className="rounded-xl p-5 bg-surface border border-neutral-800">
+            <div className="rounded-xl p-5 bg-surface hover:border-ocean-300 border border-neutral-800">
               <div className="font-medium">Diploma in Computer Engineering</div>
               <div className="text-sm text-neutral-400">Government Polytechnic Jamnagar, India (2019–2023)</div>
             </div>
-            <div className="rounded-xl p-5 bg-surface border border-neutral-800">
+            <div className="rounded-xl p-5 bg-surface border border-neutral-800 hover:border-ocean-300">
               <div className="font-medium">Schooling</div>
               <div className="text-sm text-neutral-400">Krishna Science School, Jamnagar (2019)</div>
             </div>
@@ -135,19 +135,19 @@ export default function Portfolio() {
         {/* Contact */}
         <section id="contact" className="max-w-6xl mx-auto px-6 py-16">
           <h3 className="text-2xl font-bold mb-6 text-ocean-300">Contact</h3>
-          <p className="text-neutral-300">Feel free to reach out via email: <a className="text-ocean-300" href="mailto:framesofnevil@gmail.com">framesofnevil@gmail.com</a></p>
-      
+          <p className="text-neutral-300">Feel free to reach out via email: <a className="text-ocean-300" href="mailto:Nevil@example.com">Nevil@example.com</a></p>
+       <center>
 
-
-
-
-
-
-
-
-
-
-
+        <div className="mt-4">
+  <a
+    href="src/Nik-Amraniya-Resume.pdf"
+    download="Nik-Amraniya-Resume.pdf"
+    className="px-4 py-2 bg-blue-600 text-white rounded-xl shadow hover:bg-blue-700 transition"
+    >
+    Download Resume
+  </a>
+</div>
+    </center>
 
         </section>
 <footer className="py-8 text-center text-neutral-500 flex flex-col items-center gap-3">
