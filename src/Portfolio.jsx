@@ -103,59 +103,55 @@ export default function Portfolio() {
               <div className="font-medium">Diploma in Computer Engineering</div>
               <div className="text-sm text-neutral-400">Government Polytechnic Jamnagar, India (2019–2023)</div>
             </div>
-            <div className="rounded-xl p-5 bg-surface border border-neutral-800 hover:border-ocean-300">
-              <div className="font-medium">Schooling</div>
-              <div className="text-sm text-neutral-400">Krishna Science School, Jamnagar (2019)</div>
-            </div>
           </div>
         </section>
 
-       {/* Projects */}
-<section id="projects" className="max-w-6xl mx-auto px-6 py-16">
-  <h3 className="text-2xl font-bold mb-6 text-ocean-300">Notable Projects</h3>
-  {repos.length === 0 ? (
-    <p className="text-neutral-400">Loading repositories...</p>
-  ) : (
-    <div className="grid gap-6 sm:grid-cols-2">
-      {repos.map((r) => (
-        <a
-          key={r.id}
-          href={r.html_url}
-          target="_blank"
-          rel="noreferrer"
-          className="block p-4 bg-surface rounded-xl border border-neutral-800 hover:border-ocean-300 hover:shadow-lg transition"
-        >
-          <div className="font-semibold text-ocean-200">{r.name}</div>
-        </a>
-      ))}
-    </div>
-  )}
-</section>
+        {/* Projects */}
+        <section id="projects" className="max-w-6xl mx-auto px-6 py-16">
+          <h3 className="text-2xl font-bold mb-6 text-ocean-300">Notable Projects</h3>
+          {repos.length === 0 ? (
+            <p className="text-neutral-400">Loading repositories...</p>
+          ) : (
+            <div className="grid gap-6 sm:grid-cols-2">
+              {repos.map((r) => (
+                <a
+                  key={r.id}
+                  href={r.html_url}
+                  target="_blank"
+                  rel="noreferrer"
+                  className="block p-4 bg-surface rounded-xl border border-neutral-800 hover:border-ocean-300 hover:shadow-lg transition"
+                >
+                  <div className="font-semibold text-ocean-200">{r.name}</div>
+                </a>
+              ))}
+            </div>
+          )}
+        </section>
 
         {/* Contact */}
         <section id="contact" className="max-w-6xl mx-auto px-6 py-16">
           <h3 className="text-2xl font-bold mb-6 text-ocean-300">Contact</h3>
           <p className="text-neutral-300">Feel free to reach out via email: <a className="text-ocean-300" href="mailto:framesofnevil@gmail.com">framesofnevil@gmail.com</a></p>
- 
-        </section>
-<footer className="py-8 text-center text-neutral-500 flex flex-col items-center gap-3">
-  <div>© {new Date().getFullYear()} Nevil Amraniya</div>
-  <div className="flex gap-4">
-    <a href="https://www.instagram.com/nevilamraniya07" target="_blank" rel="noreferrer" className="hover:text-ocean-300">
-      <FaInstagram size={20} />
-    </a>
-    <a href="https://www.linkedin.com/in/nevil-amraniya-51b202317/" target="_blank" rel="noreferrer" className="hover:text-ocean-300">
-      <FaLinkedin size={20} />
-    </a>
-    <a href="https://twitter.com/nevilamraniya01" target="_blank" rel="noreferrer" className="hover:text-ocean-300">
-      <FaTwitter size={20} />
-    </a>
-    <a href="https://medium.com/@qnztrrfn  " target="_blank" rel="noreferrer" className="hover:text-ocean-300">
-      <FaMedium size={20} />
-    </a>
-  </div>
 
-</footer>
+        </section>
+        <footer className="py-8 text-center text-neutral-500 flex flex-col items-center gap-3">
+          <div>© {new Date().getFullYear()} Nevil Amraniya</div>
+          <div className="flex gap-4">
+            <a href="https://www.instagram.com/nevilamraniya07" target="_blank" rel="noreferrer" className="hover:text-ocean-300">
+              <FaInstagram size={20} />
+            </a>
+            <a href="https://www.linkedin.com/in/nevil-amraniya-51b202317/" target="_blank" rel="noreferrer" className="hover:text-ocean-300">
+              <FaLinkedin size={20} />
+            </a>
+            <a href="https://twitter.com/nevilamraniya01" target="_blank" rel="noreferrer" className="hover:text-ocean-300">
+              <FaTwitter size={20} />
+            </a>
+            <a href="https://medium.com/@qnztrrfn  " target="_blank" rel="noreferrer" className="hover:text-ocean-300">
+              <FaMedium size={20} />
+            </a>
+          </div>
+
+        </footer>
 
       </main>
     </div>
