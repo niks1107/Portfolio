@@ -137,7 +137,7 @@ export default function Portfolio() {
         <footer className="py-8 text-center text-neutral-500 flex flex-col items-center gap-3">
           <div>© {new Date().getFullYear()} Nevil Amraniya</div>
           <div className="flex gap-4">
-            <a href="https://www.instagram.com/nevilamraniya07" target="_blank" rel="noreferrer" className="hover:text-ocean-300">
+            <a href="https://www.instagram.com/nevil.visuals" target="_blank" rel="noreferrer" className="hover:text-ocean-300">
               <FaInstagram size={20} />
             </a>
             <a href="https://www.linkedin.com/in/nevil-amraniya-51b202317/" target="_blank" rel="noreferrer" className="hover:text-ocean-300">
