@@ -1,10 +1,17 @@
 import { useState, useEffect } from "react";
 import { motion, AnimatePresence } from "framer-motion";
-import { Sun, Moon, ExternalLink, AlertCircle, GitBranch, Star, Award } from "lucide-react";
+import { Sun, Moon, ExternalLink, AlertCircle, GitBranch, Star, Award, Briefcase, MapPin, Calendar } from "lucide-react";
 import { FaInstagram, FaLinkedin, FaTwitter, FaMedium, FaGithub } from "react-icons/fa";
 import { SiCoursera } from "react-icons/si";
+import EXPERIENCE from "./data/experience";
+import REPO_CONFIG from "./data/repos";
 
 const GITHUB_USERNAME = "niks1107";
+
+// Build a fast lookup: repoName → visible boolean
+const REPO_VISIBILITY = Object.fromEntries(
+  REPO_CONFIG.map((r) => [r.name.toLowerCase(), r.visible])
+);
 
 // ─── Certifications data ────────────────────────────────────────────────────
 const CERTIFICATIONS = [
@@ -135,7 +142,11 @@ export default function Portfolio() {
         if (!res.ok) throw new Error("API error");
         const data = await res.json();
         if (!mounted) return;
-        setRepos(Array.isArray(data) ? data.slice(0, 24) : []);
+        // Filter by REPO_CONFIG visibility (only show repos marked visible: true)
+        const filtered = Array.isArray(data)
+          ? data.filter((r) => REPO_VISIBILITY[r.name.toLowerCase()] === true)
+          : [];
+        setRepos(filtered);
       } catch {
         if (mounted) setError(true);
       } finally {
@@ -175,6 +186,7 @@ export default function Portfolio() {
               <NavLink href="#about">About</NavLink>
               <NavLink href="#skills">Skills</NavLink>
               <NavLink href="#education">Education</NavLink>
+              {EXPERIENCE.length > 0 && <NavLink href="#experience">Experience</NavLink>}
               <NavLink href="#certifications">Certifications</NavLink>
               <NavLink href="#projects">Projects</NavLink>
               <NavLink href="#contact">Contact</NavLink>
@@ -379,6 +391,71 @@ export default function Portfolio() {
             ))}
           </div>
         </section>
+
+        {/* ── Experience (only renders when EXPERIENCE array has entries) ── */}
+        {EXPERIENCE.length > 0 && (
+          <section id="experience" className={`py-20 ${isDark ? "bg-[#0d0f18]" : "bg-white/60"}`}>
+            <div className="max-w-4xl mx-auto px-6">
+              <SectionHeading>Work Experience</SectionHeading>
+              <div className="space-y-5">
+                {EXPERIENCE.map((job, i) => (
+                  <motion.div
+                    key={`${job.company}-${i}`}
+                    variants={fadeUp}
+                    custom={i}
+                    initial="hidden"
+                    whileInView="visible"
+                    viewport={{ once: true }}
+                    className={`glow-card surface-card rounded-2xl p-6 border
+                      ${isDark ? "bg-[#131620] border-neutral-800" : "bg-white border-neutral-200"}`}
+                  >
+                    {/* Header */}
+                    <div className="flex flex-wrap items-start justify-between gap-2 mb-3">
+                      <div>
+                        <div className="flex items-center gap-2">
+                          <Briefcase size={15} className="text-cyan-500" />
+                          <span className="font-semibold text-base">{job.title}</span>
+                        </div>
+                        <div className={`flex items-center gap-3 mt-1 text-sm
+                          ${isDark ? "text-neutral-400" : "text-neutral-500"}`}>
+                          {job.url ? (
+                            <a href={job.url} target="_blank" rel="noreferrer"
+                              className="hover:text-cyan-400 transition-colors font-medium">
+                              {job.company}
+                            </a>
+                          ) : (
+                            <span className="font-medium">{job.company}</span>
+                          )}
+                          <span className="flex items-center gap-1">
+                            <MapPin size={11} /> {job.location}
+                          </span>
+                        </div>
+                      </div>
+                      <span className={`flex items-center gap-1.5 text-xs px-3 py-1 rounded-full border flex-shrink-0
+                        ${isDark ? "bg-neutral-800 border-neutral-700 text-neutral-400"
+                          : "bg-neutral-100 border-neutral-200 text-neutral-500"}`}>
+                        <Calendar size={11} /> {job.from} – {job.to}
+                      </span>
+                    </div>
+
+                    {/* Bullet points */}
+                    {job.bullets?.length > 0 && (
+                      <ul className="space-y-1.5 mt-3">
+                        {job.bullets.map((b, bi) => (
+                          <li key={bi} className={`flex items-start gap-2 text-sm
+                            ${isDark ? "text-neutral-400" : "text-neutral-600"}`}>
+                            <span className="mt-1.5 w-1.5 h-1.5 rounded-full bg-cyan-500 flex-shrink-0" />
+                            {b}
+                          </li>
+                        ))}
+                      </ul>
+                    )}
+                  </motion.div>
+                ))}
+              </div>
+            </div>
+          </section>
+        )}
 
         {/* ── Certifications ─────────────────────────────────────────── */}
         <section id="certifications" className="max-w-4xl mx-auto px-6 py-20">
