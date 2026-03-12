@@ -120,6 +120,52 @@
         "url": "https://github.com/niks1107/QLess",
         "status": "In Progress"
     },
+    "filmmaking": {
+        "brandName": "Frames of Nevil",
+        "tagline": "Stories told through frames",
+        "about": "When I'm not building AI models, I'm behind a camera \u2014 crafting cinematic stories, exploring visual narratives, and turning everyday moments into art.",
+        "roles": [
+            "Director",
+            "Cinematographer",
+            "Editor"
+        ],
+        "equipment": [
+            "Sony A7III",
+            "DJI RS3",
+            "DaVinci Resolve"
+        ],
+        "projects": [
+            {
+                "title": "Urban Echoes",
+                "category": "Short Film",
+                "year": "2025",
+                "description": "A visual poem exploring solitude in city life.",
+                "thumbnail": ""
+            },
+            {
+                "title": "Golden Hour",
+                "category": "Music Video",
+                "year": "2025",
+                "description": "Cinematic music video shot during golden hour across three locations.",
+                "thumbnail": ""
+            },
+            {
+                "title": "Wanderlust",
+                "category": "Travel Film",
+                "year": "2024",
+                "description": "A travel documentary capturing the spirit of backpacking through Europe.",
+                "thumbnail": ""
+            }
+        ],
+        "socialInstagram": "",
+        "socialYouTube": "",
+        "contactEmail": "framesofnevil@gmail.com",
+        "availability": "Currently booking for 2026",
+        "showreelUrl": "",
+        "cloudinaryCloudName": "",
+        "cloudinaryUploadPreset": "",
+        "gallery": []
+    },
     "repoVisibility": [
         {
             "name": "Portfolio",

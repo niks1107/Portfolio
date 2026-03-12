@@ -13,16 +13,38 @@ body {
 }
 
 /* ─── Custom Scrollbar ────────────────────────────── */
-::-webkit-scrollbar        { width: 6px; }
-::-webkit-scrollbar-track  { background: #0f111a; }
-::-webkit-scrollbar-thumb  { background: #4dd0e1; border-radius: 9999px; }
-::-webkit-scrollbar-thumb:hover { background: #26c6da; }
+::-webkit-scrollbar {
+  width: 6px;
+}
+
+::-webkit-scrollbar-track {
+  background: #0f111a;
+}
+
+::-webkit-scrollbar-thumb {
+  background: #4dd0e1;
+  border-radius: 9999px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: #26c6da;
+}
 
 /* ─── Animated gradient orbs in Hero ─────────────── */
 @keyframes orb-float {
-  0%, 100% { transform: translate(0, 0) scale(1); }
-  33%       { transform: translate(30px, -20px) scale(1.05); }
-  66%       { transform: translate(-20px, 15px) scale(0.95); }
+
+  0%,
+  100% {
+    transform: translate(0, 0) scale(1);
+  }
+
+  33% {
+    transform: translate(30px, -20px) scale(1.05);
+  }
+
+  66% {
+    transform: translate(-20px, 15px) scale(0.95);
+  }
 }
 
 .orb {
@@ -32,22 +54,31 @@ body {
   animation: orb-float 12s ease-in-out infinite;
   pointer-events: none;
 }
+
 .orb-1 {
-  width: 420px; height: 420px;
+  width: 420px;
+  height: 420px;
   background: radial-gradient(circle, #4dd0e144 0%, transparent 70%);
-  top: -100px; left: -80px;
+  top: -100px;
+  left: -80px;
   animation-delay: 0s;
 }
+
 .orb-2 {
-  width: 300px; height: 300px;
+  width: 300px;
+  height: 300px;
   background: radial-gradient(circle, #7c3aed33 0%, transparent 70%);
-  bottom: -60px; right: -40px;
+  bottom: -60px;
+  right: -40px;
   animation-delay: -4s;
 }
+
 .orb-3 {
-  width: 250px; height: 250px;
+  width: 250px;
+  height: 250px;
   background: radial-gradient(circle, #0ea5e944 0%, transparent 70%);
-  top: 30%; left: 50%;
+  top: 30%;
+  left: 50%;
   animation-delay: -8s;
 }
 
@@ -63,6 +94,7 @@ body {
 .glow-card {
   transition: border-color 0.3s ease, box-shadow 0.3s ease, transform 0.2s ease;
 }
+
 .glow-card:hover {
   border-color: #4dd0e1 !important;
   box-shadow: 0 0 24px 0 #4dd0e133;
@@ -73,6 +105,7 @@ body {
 .skill-pill {
   transition: border-color 0.2s, box-shadow 0.2s, transform 0.2s, background 0.2s;
 }
+
 .skill-pill:hover {
   border-color: #4dd0e1 !important;
   box-shadow: 0 0 16px 0 #4dd0e122;
@@ -82,9 +115,15 @@ body {
 
 /* ─── Loading skeleton ────────────────────────────── */
 @keyframes shimmer {
-  0%   { background-position: -600px 0; }
-  100% { background-position:  600px 0; }
+  0% {
+    background-position: -600px 0;
+  }
+
+  100% {
+    background-position: 600px 0;
+  }
 }
+
 .skeleton {
   background: linear-gradient(90deg, #1e2130 25%, #2a2f45 50%, #1e2130 75%);
   background-size: 600px 100%;
@@ -94,7 +133,8 @@ body {
 
 /* ─── Timeline connector ──────────────────────────── */
 .timeline-dot {
-  width: 12px; height: 12px;
+  width: 12px;
+  height: 12px;
   border-radius: 9999px;
   background: #4dd0e1;
   box-shadow: 0 0 10px #4dd0e1aa;
@@ -107,26 +147,32 @@ html.light body {
   background-color: #f0f4f8;
   color: #1a202c;
 }
+
 html.light .nav-bg {
   background: rgba(240, 244, 248, 0.85) !important;
   border-bottom-color: #e2e8f0 !important;
 }
+
 html.light .surface-card {
   background: #ffffff !important;
   border-color: #e2e8f0 !important;
   color: #1a202c !important;
 }
+
 html.light .txt-muted {
   color: #64748b !important;
 }
+
 html.light .txt-main {
   color: #1a202c !important;
 }
+
 html.light .skill-pill {
   background: #f8fafc !important;
   border-color: #cbd5e1 !important;
   color: #334155 !important;
 }
+
 html.light .skill-pill:hover {
   background: #e0f7fa !important;
 }
@@ -135,7 +181,32 @@ html.light .skill-pill:hover {
 .social-icon {
   transition: color 0.2s, transform 0.2s;
 }
+
 .social-icon:hover {
   color: #4dd0e1;
   transform: scale(1.2);
+}
+
+/* ─── Filmmaking page ─────────────────────────────── */
+.filmmaking-page {
+  font-family: 'Inter', ui-sans-serif, system-ui, sans-serif;
+}
+
+.film-grain {
+  position: fixed;
+  inset: 0;
+  pointer-events: none;
+  z-index: 100;
+  opacity: 0.03;
+  background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noise)'/%3E%3C/svg%3E");
+}
+
+.film-card {
+  transition: border-color 0.3s ease, box-shadow 0.3s ease, transform 0.2s ease;
+}
+
+.film-card:hover {
+  border-color: rgba(201, 168, 76, 0.3) !important;
+  box-shadow: 0 0 30px 0 rgba(201, 168, 76, 0.08);
+  transform: translateY(-4px);
 }

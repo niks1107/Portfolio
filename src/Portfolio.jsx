@@ -601,9 +601,7 @@ export default function Portfolio() {
                     When I'm not building AI models, I'm behind a camera — crafting stories, one frame at a time.
                   </p>
                   <a
-                    href="#"
-                    target="_blank"
-                    rel="noreferrer"
+                    href="/filmmaking"
                     className="inline-flex items-center gap-2 px-6 py-2.5 rounded-full text-sm font-semibold transition-all duration-200 shadow-lg
                       bg-gradient-to-r from-violet-500 to-pink-500 hover:from-violet-400 hover:to-pink-400 text-white shadow-violet-500/30 hover:shadow-violet-400/40"
                   >
