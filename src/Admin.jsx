@@ -675,6 +675,19 @@ export default function Admin() {
                         </div>
                         <Input label="Showreel URL (embed)" value={data.filmmaking?.showreelUrl || ""} onChange={(v) => updateFilmmaking("showreelUrl", v)} placeholder="https://www.youtube.com/embed/..." />
 
+                        {/* Instagram Access Token */}
+                        <div className="rounded-xl border border-neutral-800 bg-neutral-900/40 p-4 space-y-2">
+                            <span className="text-xs font-medium text-neutral-400 block">Instagram Reels</span>
+                            <p className="text-[11px] text-neutral-500">Paste your Instagram Graph API access token to fetch and display your reels on the filmmaking page.</p>
+                            <input
+                                type="password"
+                                value={data.filmmaking?.instagramAccessToken || ""}
+                                onChange={(e) => updateFilmmaking("instagramAccessToken", e.target.value)}
+                                placeholder="IGQ..."
+                                className="w-full rounded-lg border border-neutral-700 bg-neutral-800/60 px-3 py-2 text-sm text-neutral-200 placeholder-neutral-600 focus:border-cyan-500 focus:outline-none focus:ring-1 focus:ring-cyan-500/40 transition"
+                            />
+                        </div>
+
                         {/* Roles */}
                         <div>
                             <span className="text-xs font-medium text-neutral-400 block mb-2">Roles</span>

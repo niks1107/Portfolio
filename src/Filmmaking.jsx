@@ -53,6 +53,8 @@ export default function Filmmaking() {
     const [galleryFilter, setGalleryFilter] = useState("all");
     const [lightbox, setLightbox] = useState(null);
     const [projectFilter, setProjectFilter] = useState("all");
+    const [reels, setReels] = useState([]);
+    const [reelsLoading, setReelsLoading] = useState(false);
 
     useEffect(() => {
         loadStore().then((d) => {
@@ -78,8 +80,28 @@ export default function Filmmaking() {
         contactEmail = "framesofnevil@gmail.com",
         availability = "Currently booking for 2026",
         showreelUrl = "",
+        instagramAccessToken = "",
         gallery = [],
     } = fm;
+
+    // Fetch Instagram reels
+    useEffect(() => {
+        if (!instagramAccessToken) return;
+        let cancelled = false;
+        setReelsLoading(true);
+        fetch(
+            `https://graph.instagram.com/me/media?fields=id,caption,media_type,media_url,thumbnail_url,permalink,timestamp&limit=12&access_token=${encodeURIComponent(instagramAccessToken)}`
+        )
+            .then((res) => res.ok ? res.json() : Promise.reject())
+            .then((json) => {
+                if (cancelled) return;
+                const videos = (json.data || []).filter((m) => m.media_type === "VIDEO");
+                setReels(videos);
+            })
+            .catch(() => { /* token invalid or network error */ })
+            .finally(() => { if (!cancelled) setReelsLoading(false); });
+        return () => { cancelled = true; };
+    }, [instagramAccessToken]);
 
     const filteredGallery = gallery.filter((item) =>
         galleryFilter === "all" ? true : item.type === galleryFilter
@@ -350,8 +372,8 @@ export default function Filmmaking() {
                                 key={cat}
                                 onClick={() => setProjectFilter(cat)}
                                 className={`px-4 py-1.5 rounded-full text-xs font-medium tracking-wider uppercase transition-all duration-200 border ${projectFilter === cat
-                                        ? "border-[#c9a84c] bg-[#c9a84c]/15 text-[#c9a84c]"
-                                        : "border-[#f5f0e8]/10 text-[#f5f0e8]/30 hover:border-[#f5f0e8]/20 hover:text-[#f5f0e8]/50"
+                                    ? "border-[#c9a84c] bg-[#c9a84c]/15 text-[#c9a84c]"
+                                    : "border-[#f5f0e8]/10 text-[#f5f0e8]/30 hover:border-[#f5f0e8]/20 hover:text-[#f5f0e8]/50"
                                     }`}
                             >
                                 {cat === "all" ? "All" : cat}
@@ -407,6 +429,71 @@ export default function Filmmaking() {
                     </motion.div>
                 </div>
             </section>
+
+            {/* ── Instagram Reels ────────────────────────────────────── */}
+            {(reels.length > 0 || reelsLoading) && (
+                <section className="py-24 bg-[#0d0d0d]">
+                    <div className="max-w-6xl mx-auto px-6">
+                        <SectionHeading>Instagram Reels</SectionHeading>
+
+                        {reelsLoading ? (
+                            <div className="flex items-center justify-center py-16">
+                                <div className="w-8 h-8 border-2 border-[#c9a84c]/30 border-t-[#c9a84c] rounded-full animate-spin" />
+                                <span className="ml-3 text-sm text-[#f5f0e8]/30">Loading reels…</span>
+                            </div>
+                        ) : (
+                            <motion.div
+                                variants={stagger}
+                                initial="hidden"
+                                whileInView="visible"
+                                viewport={{ once: true }}
+                                className="grid gap-5 sm:grid-cols-2 lg:grid-cols-3"
+                            >
+                                {reels.map((reel, i) => (
+                                    <motion.a
+                                        key={reel.id}
+                                        href={reel.permalink}
+                                        target="_blank"
+                                        rel="noreferrer"
+                                        variants={fadeUp}
+                                        custom={i}
+                                        className="group relative rounded-2xl overflow-hidden border border-[#f5f0e8]/8 bg-[#111] cursor-pointer block"
+                                    >
+                                        {/* Thumbnail */}
+                                        <div className="aspect-[9/16] max-h-[420px] bg-gradient-to-br from-[#1a1a1a] to-[#111] relative overflow-hidden">
+                                            <img
+                                                src={reel.thumbnail_url || reel.media_url}
+                                                alt={reel.caption?.slice(0, 60) || "Instagram Reel"}
+                                                className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-105"
+                                                loading="lazy"
+                                            />
+                                            {/* Play overlay */}
+                                            <div className="absolute inset-0 bg-black/30 opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex items-center justify-center">
+                                                <div className="w-14 h-14 rounded-full border-2 border-[#c9a84c] bg-black/40 backdrop-blur-sm flex items-center justify-center">
+                                                    <Play size={22} className="text-[#c9a84c] ml-0.5" fill="currentColor" />
+                                                </div>
+                                            </div>
+                                            {/* Instagram badge */}
+                                            <div className="absolute top-3 right-3 w-8 h-8 rounded-full bg-black/50 backdrop-blur-sm flex items-center justify-center border border-[#f5f0e8]/10">
+                                                <FaInstagram size={14} className="text-[#f5f0e8]/60" />
+                                            </div>
+                                        </div>
+
+                                        {/* Caption */}
+                                        {reel.caption && (
+                                            <div className="p-4">
+                                                <p className="text-xs text-[#f5f0e8]/40 leading-relaxed line-clamp-2">
+                                                    {reel.caption}
+                                                </p>
+                                            </div>
+                                        )}
+                                    </motion.a>
+                                ))}
+                            </motion.div>
+                        )}
+                    </div>
+                </section>
+            )}
 
             {/* ── Gallery ──────────────────────────────────────────────── */}
             {gallery.length > 0 && (
