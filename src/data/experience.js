@@ -16,19 +16,19 @@
 
 const EXPERIENCE = [
     // ── Example entry (uncomment and fill in) ──────────────────
-    // {
-    //   title:    "Machine Learning Intern",
-    //   company:  "Acme Corp",
-    //   location: "Berlin, Germany",
-    //   from:     "Jun 2024",
-    //   to:       "Aug 2024",
-    //   url:      "https://acme.com",
-    //   bullets: [
-    //     "Built a recommendation engine with PyTorch, improving CTR by 12%.",
-    //     "Automated data-cleaning pipeline reducing preprocessing time by 40%.",
-    //     "Collaborated with a cross-functional team of 6 engineers.",
-    //   ],
-    // },
+    {
+        title: "Machine Learning Intern",
+        company: "Acme Corp",
+        location: "Berlin, Germany",
+        from: "Jun 2024",
+        to: "Aug 2024",
+        url: "https://acme.com",
+        bullets: [
+            "Built a recommendation engine with PyTorch, improving CTR by 12%.",
+            "Automated data-cleaning pipeline reducing preprocessing time by 40%.",
+            "Collaborated with a cross-functional team of 6 engineers.",
+        ],
+    },
 ];
 
 export default EXPERIENCE;

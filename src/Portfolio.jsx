@@ -1,54 +1,20 @@
 import { useState, useEffect } from "react";
 import { motion, AnimatePresence } from "framer-motion";
-import { Sun, Moon, ExternalLink, AlertCircle, GitBranch, Star, Award, Briefcase, MapPin, Calendar } from "lucide-react";
-import { FaInstagram, FaLinkedin, FaTwitter, FaMedium, FaGithub } from "react-icons/fa";
+import { Sun, Moon, ExternalLink, AlertCircle, GitBranch, Star, Award, Briefcase, MapPin, Calendar, Rocket } from "lucide-react";
+import { FaInstagram, FaLinkedin, FaTwitter, FaMedium, FaGithub, FaYoutube, FaDribbble } from "react-icons/fa";
 import { SiCoursera } from "react-icons/si";
-import EXPERIENCE from "./data/experience";
-import REPO_CONFIG from "./data/repos";
+import { loadStore, DEFAULTS } from "./data/portfolioStore";
 
-const GITHUB_USERNAME = "niks1107";
+const SOCIAL_ICON_MAP = {
+  Instagram: FaInstagram,
+  LinkedIn: FaLinkedin,
+  Twitter: FaTwitter,
+  Medium: FaMedium,
+  YouTube: FaYoutube,
+  Dribbble: FaDribbble,
+};
 
-// Build a fast lookup: repoName → visible boolean
-const REPO_VISIBILITY = Object.fromEntries(
-  REPO_CONFIG.map((r) => [r.name.toLowerCase(), r.visible])
-);
 
-// ─── Certifications data ────────────────────────────────────────────────────
-const CERTIFICATIONS = [
-  {
-    title: "Programming for Everybody (Getting Started with Python)",
-    issuer: "Coursera",
-    org: "University of Michigan",
-    date: "2024",
-    url: "https://coursera.org/share/d86f4ffa4d9ec06db9ae38498592457c",
-    platform: "coursera",
-  },
-  // Add more certifications here:
-  // {
-  //   title: "Your Next Cert",
-  //   issuer: "Coursera",
-  //   org: "Issuing University / Org",
-  //   date: "2025",
-  //   url: "https://...",
-  //   platform: "coursera",
-  // },
-];
-
-// ─── Skill data with categories ────────────────────────────────────────────
-const SKILLS = [
-  { name: "Python", category: "Lang" },
-  { name: "Java", category: "Lang" },
-  { name: "NumPy", category: "Data" },
-  { name: "Pandas", category: "Data" },
-  { name: "Matplotlib", category: "Data" },
-  { name: "scikit-learn", category: "ML" },
-  { name: "TensorFlow", category: "ML" },
-  { name: "PyTorch", category: "ML" },
-  { name: "Keras", category: "ML" },
-  { name: "Flask", category: "Web" },
-  { name: "Statistics", category: "Math" },
-  { name: "Calculus", category: "Math" },
-];
 
 const CATEGORY_COLORS = {
   Lang: "border-sky-500/40 bg-sky-500/10 text-sky-300",
@@ -107,6 +73,12 @@ function SkeletonCard() {
 
 // ─── Main Component ──────────────────────────────────────────────────────────
 export default function Portfolio() {
+  const [store, setStore] = useState(DEFAULTS);
+  const [storeLoaded, setStoreLoaded] = useState(false);
+  const { profile, socials, skills: SKILLS, education, experience: EXPERIENCE, certifications: CERTIFICATIONS, currentProject: CURRENT_PROJECT, repoVisibility } = store;
+  const GITHUB_USERNAME = profile.githubUsername;
+  const REPO_VISIBILITY = Object.fromEntries(repoVisibility.map((r) => [r.name.toLowerCase(), r.visible]));
+
   const [theme, setTheme] = useState(
     () => localStorage.getItem("theme") || "dark"
   );
@@ -114,6 +86,12 @@ export default function Portfolio() {
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(false);
   const [navScrolled, setNavScrolled] = useState(false);
+  const [currentProjectLangs, setCurrentProjectLangs] = useState([]);
+
+  // Load portfolio data
+  useEffect(() => {
+    loadStore().then((d) => { setStore(d); setStoreLoaded(true); });
+  }, []);
 
   // Apply theme class + persist
   useEffect(() => {
@@ -129,8 +107,26 @@ export default function Portfolio() {
     return () => window.removeEventListener("scroll", onScroll);
   }, []);
 
+  // Fetch languages for current project repo
+  useEffect(() => {
+    if (!storeLoaded) return;
+    let mounted = true;
+    async function fetchLangs() {
+      try {
+        const repoName = CURRENT_PROJECT.url.split("/").slice(-2).join("/");
+        const res = await fetch(`https://api.github.com/repos/${repoName}/languages`);
+        if (!res.ok) return;
+        const data = await res.json();
+        if (mounted) setCurrentProjectLangs(Object.keys(data));
+      } catch { /* ignore */ }
+    }
+    fetchLangs();
+    return () => { mounted = false; };
+  }, [storeLoaded]);
+
   // Fetch GitHub repos
   useEffect(() => {
+    if (!storeLoaded) return;
     let mounted = true;
     async function fetchRepos() {
       try {
@@ -142,7 +138,6 @@ export default function Portfolio() {
         if (!res.ok) throw new Error("API error");
         const data = await res.json();
         if (!mounted) return;
-        // Filter by REPO_CONFIG visibility (only show repos marked visible: true)
         const filtered = Array.isArray(data)
           ? data.filter((r) => REPO_VISIBILITY[r.name.toLowerCase()] === true)
           : [];
@@ -155,7 +150,7 @@ export default function Portfolio() {
     }
     fetchRepos();
     return () => { mounted = false; };
-  }, []);
+  }, [storeLoaded]);
 
   const toggleTheme = () =>
     setTheme((t) => (t === "dark" ? "light" : "dark"));
@@ -178,7 +173,7 @@ export default function Portfolio() {
       >
         <div className="max-w-6xl mx-auto flex justify-between items-center px-6 py-4">
           <span className="text-lg font-bold font-[Outfit] gradient-text tracking-tight">
-            Nevil Amraniya
+            {profile.name}
           </span>
 
           <div className="flex items-center gap-6">
@@ -188,6 +183,8 @@ export default function Portfolio() {
               <NavLink href="#education">Education</NavLink>
               {EXPERIENCE.length > 0 && <NavLink href="#experience">Experience</NavLink>}
               <NavLink href="#certifications">Certifications</NavLink>
+              <NavLink href="#current">Current</NavLink>
+              <NavLink href="#filmmaking">Filmmaking</NavLink>
               <NavLink href="#projects">Projects</NavLink>
               <NavLink href="#contact">Contact</NavLink>
             </div>
@@ -239,7 +236,7 @@ export default function Portfolio() {
                 : "bg-white/80 border-neutral-300 text-neutral-500 shadow-sm"}`}
           >
             <span className="w-2 h-2 rounded-full bg-green-400 animate-pulse" />
-            Essen, Germany
+            {profile.location}
           </motion.div>
 
           {/* Name */}
@@ -249,7 +246,7 @@ export default function Portfolio() {
             transition={{ duration: 0.7, delay: 0.3 }}
             className="text-5xl md:text-7xl font-extrabold font-[Outfit] gradient-text leading-tight mb-4"
           >
-            Nevil Amraniya
+            {profile.name}
           </motion.h1>
 
           {/* Tagline */}
@@ -260,8 +257,7 @@ export default function Portfolio() {
             className={`text-lg md:text-xl max-w-xl leading-relaxed mb-8
               ${isDark ? "text-neutral-400" : "text-neutral-600"}`}
           >
-            AI / ML Enthusiast &amp; CS Student — building intelligent systems,
-            one model at a time.
+            {profile.tagline}
           </motion.p>
 
           {/* CTA buttons */}
@@ -313,11 +309,7 @@ export default function Portfolio() {
             viewport={{ once: true }}
             className={`text-base md:text-lg leading-relaxed ${isDark ? "text-neutral-400" : "text-neutral-600"}`}
           >
-            I'm passionate about Artificial Intelligence and Machine Learning — eager to explore data,
-            build predictive models, and create impactful applications. Currently pursuing a{" "}
-            <span className="text-cyan-400 font-medium">BSc in Computer Science and Digital Technologies</span>{" "}
-            at FOM University of Applied Sciences, Essen, Germany. I love turning complex data into
-            tangible solutions and I'm constantly looking to collaborate on open-source AI projects.
+            {profile.aboutText}
           </motion.p>
         </section>
 
@@ -353,20 +345,7 @@ export default function Portfolio() {
         <section id="education" className="max-w-4xl mx-auto px-6 py-20">
           <SectionHeading>Education</SectionHeading>
           <div className="space-y-4">
-            {[
-              {
-                degree: "BSc in Computer Science and Digital Technologies",
-                school: "FOM University of Applied Sciences",
-                location: "Essen, Germany",
-                years: "2025 – 2028",
-              },
-              {
-                degree: "Diploma in Computer Engineering",
-                school: "Government Polytechnic Jamnagar",
-                location: "India",
-                years: "2019 – 2023",
-              },
-            ].map((edu, i) => (
+            {education.map((edu, i) => (
               <motion.div
                 key={edu.degree}
                 variants={fadeUp}
@@ -512,6 +491,136 @@ export default function Portfolio() {
           </motion.div>
         </section>
 
+        {/* ── Currently Working On ────────────────────────────────────── */}
+        <section id="current" className="max-w-4xl mx-auto px-6 py-20">
+          <SectionHeading>Currently Working On</SectionHeading>
+          <motion.a
+            href={CURRENT_PROJECT.url}
+            target="_blank"
+            rel="noreferrer"
+            variants={fadeUp}
+            initial="hidden"
+            whileInView="visible"
+            viewport={{ once: true }}
+            className={`glow-card surface-card group block rounded-2xl p-6 border cursor-pointer transition
+              ${isDark ? "bg-[#131620] border-neutral-800" : "bg-white border-neutral-200"}`}
+          >
+            {/* Status badge */}
+            <div className="flex items-center justify-between mb-4">
+              <span className="flex items-center gap-2 text-xs font-semibold px-3 py-1 rounded-full border bg-emerald-500/15 border-emerald-500/40 text-emerald-400">
+                <span className="w-2 h-2 rounded-full bg-emerald-400 animate-pulse" />
+                {CURRENT_PROJECT.status}
+              </span>
+              <ExternalLink size={14} className={`opacity-0 group-hover:opacity-100 transition-opacity ${isDark ? "text-neutral-500" : "text-neutral-400"}`} />
+            </div>
+
+            {/* Title */}
+            <div className="flex items-center gap-2 mb-3">
+              <Rocket size={18} className="text-cyan-500" />
+              <h3 className="font-semibold text-lg">{CURRENT_PROJECT.title}</h3>
+            </div>
+
+            {/* Description */}
+            <p className={`text-sm leading-relaxed mb-4 ${isDark ? "text-neutral-400" : "text-neutral-600"}`}>
+              {CURRENT_PROJECT.description}
+            </p>
+
+            {/* Tech stack (from GitHub) */}
+            {currentProjectLangs.length > 0 && (
+              <div className="flex flex-wrap gap-2">
+                {currentProjectLangs.map((t) => (
+                  <span
+                    key={t}
+                    className={`text-xs px-2.5 py-1 rounded-full border font-medium
+                      ${isDark ? "bg-cyan-500/10 border-cyan-500/30 text-cyan-400"
+                        : "bg-cyan-50 border-cyan-200 text-cyan-700"}`}
+                  >
+                    {t}
+                  </span>
+                ))}
+              </div>
+            )}
+          </motion.a>
+        </section>
+
+        {/* ── Beyond the Code — Filmmaking ─────────────────────────── */}
+        <section id="filmmaking" className={`py-20 ${isDark ? "bg-[#0d0f18]" : "bg-white/60"}`}>
+          <div className="max-w-4xl mx-auto px-6">
+            <SectionHeading>Beyond the Code</SectionHeading>
+            <motion.div
+              variants={fadeUp}
+              initial="hidden"
+              whileInView="visible"
+              viewport={{ once: true }}
+              className="relative overflow-hidden rounded-2xl border group"
+              style={{
+                background: isDark
+                  ? "linear-gradient(135deg, #0a0c12 0%, #1a1025 50%, #0a0c12 100%)"
+                  : "linear-gradient(135deg, #f0f4f8 0%, #e8e0f0 50%, #f0f4f8 100%)",
+                borderColor: isDark ? "rgba(139,92,246,0.3)" : "rgba(139,92,246,0.2)",
+              }}
+            >
+              {/* Film grain overlay */}
+              <div
+                className="absolute inset-0 opacity-[0.04] pointer-events-none"
+                style={{
+                  backgroundImage: `url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noise)'/%3E%3C/svg%3E")`,
+                }}
+              />
+
+              {/* Letterbox bars */}
+              <div className={`h-3 w-full ${isDark ? "bg-black" : "bg-neutral-900"}`} />
+
+              <div className="relative px-8 py-12 sm:px-12 sm:py-16 flex flex-col sm:flex-row items-center gap-8">
+                {/* Play button */}
+                <div className="flex-shrink-0">
+                  <div className={`w-20 h-20 rounded-full flex items-center justify-center border-2 transition-all duration-300 group-hover:scale-110 group-hover:shadow-lg
+                    ${isDark
+                      ? "border-violet-400/60 bg-violet-500/10 shadow-violet-500/20 group-hover:shadow-violet-500/40"
+                      : "border-violet-400 bg-violet-50 shadow-violet-300/30 group-hover:shadow-violet-400/40"}`}
+                  >
+                    <svg width="28" height="28" viewBox="0 0 24 24" fill="currentColor" className={`ml-1 ${isDark ? "text-violet-300" : "text-violet-500"}`}>
+                      <polygon points="5,3 19,12 5,21" />
+                    </svg>
+                  </div>
+                </div>
+
+                {/* Content */}
+                <div className="text-center sm:text-left flex-1">
+                  <div className={`text-xs font-medium tracking-[0.2em] uppercase mb-2 ${isDark ? "text-violet-400/80" : "text-violet-500"}`}>
+                    Another side of me
+                  </div>
+                  <h3 className="text-2xl sm:text-3xl font-bold font-[Outfit] mb-2" style={{
+                    background: "linear-gradient(135deg, #c084fc, #f472b6)",
+                    WebkitBackgroundClip: "text",
+                    WebkitTextFillColor: "transparent",
+                  }}>
+                    Frames of Nevil
+                  </h3>
+                  <p className={`text-sm leading-relaxed max-w-md mb-6 ${isDark ? "text-neutral-400" : "text-neutral-600"}`}>
+                    When I'm not building AI models, I'm behind a camera — crafting stories, one frame at a time.
+                  </p>
+                  <a
+                    href="#"
+                    target="_blank"
+                    rel="noreferrer"
+                    className="inline-flex items-center gap-2 px-6 py-2.5 rounded-full text-sm font-semibold transition-all duration-200 shadow-lg
+                      bg-gradient-to-r from-violet-500 to-pink-500 hover:from-violet-400 hover:to-pink-400 text-white shadow-violet-500/30 hover:shadow-violet-400/40"
+                  >
+                    <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+                      <polygon points="5,3 19,12 5,21" />
+                    </svg>
+                    Explore My Work
+                  </a>
+                </div>
+              </div>
+
+              {/* Letterbox bar bottom */}
+              <div className={`h-3 w-full ${isDark ? "bg-black" : "bg-neutral-900"}`} />
+            </motion.div>
+          </div>
+        </section>
+
         {/* ── Projects ───────────────────────────────────────────────── */}
         <section id="projects" className={`py-20 ${isDark ? "bg-[#0d0f18]" : "bg-white/60"}`}>
           <div className="max-w-6xl mx-auto px-6">
@@ -641,10 +750,10 @@ export default function Portfolio() {
               Drop me a line!
             </p>
             <a
-              href="mailto:framesofnevil@gmail.com"
+              href={`mailto:${profile.email}`}
               className="inline-block px-8 py-3 rounded-full font-semibold text-sm bg-cyan-500 hover:bg-cyan-400 text-black transition-all duration-200 shadow-lg shadow-cyan-500/30 hover:shadow-cyan-400/40"
             >
-              framesofnevil@gmail.com
+              {profile.email}
             </a>
           </motion.div>
         </section>
@@ -653,27 +762,34 @@ export default function Portfolio() {
         <footer className={`py-10 border-t ${isDark ? "border-neutral-800/60" : "border-neutral-200"}`}>
           <div className="max-w-6xl mx-auto px-6 flex flex-col sm:flex-row items-center justify-between gap-4">
             <span className={`text-sm ${isDark ? "text-neutral-600" : "text-neutral-400"}`}>
-              © {new Date().getFullYear()} Nevil Amraniya — Built with React &amp; Tailwind
+              © {new Date().getFullYear()} {profile.name} — Built with React &amp; Tailwind
             </span>
             <div className="flex gap-5">
-              {[
-                { icon: FaInstagram, href: "https://www.instagram.com/nevilamraniya07", label: "Instagram" },
-                { icon: FaLinkedin, href: "https://www.linkedin.com/in/nevil-amraniya-51b202317/", label: "LinkedIn" },
-                { icon: FaTwitter, href: "https://twitter.com/nevilamraniya01", label: "Twitter" },
-                { icon: FaMedium, href: "https://medium.com/@qnztrrfn", label: "Medium" },
-                { icon: FaGithub, href: `https://github.com/${GITHUB_USERNAME}`, label: "GitHub" },
-              ].map(({ icon: Icon, href, label }) => (
-                <a
-                  key={label}
-                  href={href}
-                  target="_blank"
-                  rel="noreferrer"
-                  aria-label={label}
-                  className={`social-icon ${isDark ? "text-neutral-500" : "text-neutral-400"}`}
-                >
-                  <Icon size={20} />
-                </a>
-              ))}
+              {socials.map(({ platform, url }) => {
+                const Icon = SOCIAL_ICON_MAP[platform];
+                if (!Icon) return null;
+                return (
+                  <a
+                    key={platform}
+                    href={url}
+                    target="_blank"
+                    rel="noreferrer"
+                    aria-label={platform}
+                    className={`social-icon ${isDark ? "text-neutral-500" : "text-neutral-400"}`}
+                  >
+                    <Icon size={20} />
+                  </a>
+                );
+              })}
+              <a
+                href={`https://github.com/${GITHUB_USERNAME}`}
+                target="_blank"
+                rel="noreferrer"
+                aria-label="GitHub"
+                className={`social-icon ${isDark ? "text-neutral-500" : "text-neutral-400"}`}
+              >
+                <FaGithub size={20} />
+              </a>
             </div>
           </div>
         </footer>
