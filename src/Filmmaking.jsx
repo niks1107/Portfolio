@@ -1,7 +1,7 @@
 import { useState, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 import { motion, AnimatePresence } from "framer-motion";
-import { ArrowLeft, Play, Mail, MapPin, Camera, Film, Clapperboard, Sparkles, X, Image } from "lucide-react";
+import { ArrowLeft, Play, Mail, MapPin, Camera, Film, Clapperboard, Sparkles, X, Image, CheckCircle } from "lucide-react";
 import { FaInstagram, FaYoutube } from "react-icons/fa";
 import { loadStore, DEFAULTS } from "./data/portfolioStore";
 
@@ -52,6 +52,7 @@ export default function Filmmaking() {
     const [loaded, setLoaded] = useState(false);
     const [galleryFilter, setGalleryFilter] = useState("all");
     const [lightbox, setLightbox] = useState(null);
+    const [projectFilter, setProjectFilter] = useState("all");
 
     useEffect(() => {
         loadStore().then((d) => {
@@ -63,9 +64,10 @@ export default function Filmmaking() {
     const {
         brandName = "Frames of Nevil",
         tagline = "Stories told through frames",
-        about = "When I'm not building AI models, I'm behind a camera — crafting cinematic stories, exploring visual narratives, and turning everyday moments into art.",
-        roles = ["Director", "Cinematographer", "Editor"],
-        equipment = ["Sony A7III", "DJI RS3", "DaVinci Resolve"],
+        about = "When I'm not building AI models, I'm behind a camera — crafting cinematic stories, exploring visual narratives, and turning everyday moments into art. I also love working with models, capturing their essence through creative portrait and fashion photography.",
+        roles = ["Director", "Cinematographer", "Editor", "Model Photographer"],
+        equipment = ["Sony A7III", "DJI RS3", "DaVinci Resolve", "85mm f/1.4 Lens", "Studio Lighting Kit"],
+        services = [],
         projects = [
             { title: "Urban Echoes", category: "Short Film", year: "2025", description: "A visual poem exploring solitude in city life.", thumbnail: "" },
             { title: "Golden Hour", category: "Music Video", year: "2025", description: "Cinematic music video shot during golden hour across three locations.", thumbnail: "" },
@@ -82,6 +84,13 @@ export default function Filmmaking() {
     const filteredGallery = gallery.filter((item) =>
         galleryFilter === "all" ? true : item.type === galleryFilter
     );
+
+    const projectCategories = ["all", ...new Set(projects.map((p) => p.category))];
+    const filteredProjects = projects.filter((p) =>
+        projectFilter === "all" ? true : p.category === projectFilter
+    );
+
+    const serviceIcons = { camera: Camera, film: Film, sparkles: Sparkles };
 
     return (
         <div className="min-h-screen bg-[#0a0a0a] text-[#f5f0e8] overflow-hidden filmmaking-page">
@@ -274,10 +283,81 @@ export default function Filmmaking() {
                 </motion.div>
             </section>
 
+            {/* ── Services ───────────────────────────────────────────── */}
+            {services.length > 0 && (
+                <section className="py-24 bg-[#0d0d0d]">
+                    <div className="max-w-6xl mx-auto px-6">
+                        <SectionHeading>What I Offer</SectionHeading>
+                        <motion.div
+                            variants={stagger}
+                            initial="hidden"
+                            whileInView="visible"
+                            viewport={{ once: true }}
+                            className="grid gap-6 sm:grid-cols-2 lg:grid-cols-3"
+                        >
+                            {services.map((svc, i) => {
+                                const Icon = serviceIcons[svc.icon] || Camera;
+                                return (
+                                    <motion.div
+                                        key={svc.title}
+                                        variants={fadeUp}
+                                        custom={i}
+                                        className="rounded-2xl border border-[#c9a84c]/15 bg-gradient-to-br from-[#c9a84c]/5 to-transparent p-7 hover:border-[#c9a84c]/30 transition-colors duration-300"
+                                    >
+                                        <div className="w-12 h-12 rounded-full flex items-center justify-center border border-[#c9a84c]/20 bg-[#c9a84c]/8 mb-5">
+                                            <Icon size={20} className="text-[#c9a84c]" />
+                                        </div>
+                                        <h3
+                                            className="text-lg font-semibold mb-3 text-[#f5f0e8]/90"
+                                            style={{ fontFamily: "'Playfair Display', serif" }}
+                                        >
+                                            {svc.title}
+                                        </h3>
+                                        <p className="text-sm text-[#f5f0e8]/40 leading-relaxed mb-5">{svc.description}</p>
+                                        {svc.features && svc.features.length > 0 && (
+                                            <ul className="space-y-2">
+                                                {svc.features.map((feat) => (
+                                                    <li key={feat} className="flex items-center gap-2 text-xs text-[#f5f0e8]/50">
+                                                        <CheckCircle size={12} className="text-[#c9a84c]/60 flex-shrink-0" />
+                                                        {feat}
+                                                    </li>
+                                                ))}
+                                            </ul>
+                                        )}
+                                    </motion.div>
+                                );
+                            })}
+                        </motion.div>
+                    </div>
+                </section>
+            )}
+
             {/* ── Work / Projects ──────────────────────────────────────── */}
-            <section className="py-24 bg-[#0d0d0d]">
+            <section className="py-24">
                 <div className="max-w-6xl mx-auto px-6">
                     <SectionHeading>Selected Work</SectionHeading>
+
+                    {/* Category filter */}
+                    <motion.div
+                        variants={fadeUp}
+                        initial="hidden"
+                        whileInView="visible"
+                        viewport={{ once: true }}
+                        className="flex flex-wrap gap-3 mb-8"
+                    >
+                        {projectCategories.map((cat) => (
+                            <button
+                                key={cat}
+                                onClick={() => setProjectFilter(cat)}
+                                className={`px-4 py-1.5 rounded-full text-xs font-medium tracking-wider uppercase transition-all duration-200 border ${projectFilter === cat
+                                        ? "border-[#c9a84c] bg-[#c9a84c]/15 text-[#c9a84c]"
+                                        : "border-[#f5f0e8]/10 text-[#f5f0e8]/30 hover:border-[#f5f0e8]/20 hover:text-[#f5f0e8]/50"
+                                    }`}
+                            >
+                                {cat === "all" ? "All" : cat}
+                            </button>
+                        ))}
+                    </motion.div>
 
                     <motion.div
                         variants={stagger}
@@ -286,7 +366,7 @@ export default function Filmmaking() {
                         viewport={{ once: true }}
                         className="grid gap-6 sm:grid-cols-2 lg:grid-cols-3"
                     >
-                        {projects.map((proj, i) => (
+                        {filteredProjects.map((proj, i) => (
                             <motion.div
                                 key={proj.title}
                                 variants={fadeUp}
@@ -299,7 +379,7 @@ export default function Filmmaking() {
                                         <img src={proj.thumbnail} alt={proj.title} className="w-full h-full object-cover" />
                                     ) : (
                                         <div className="flex flex-col items-center gap-2 text-[#f5f0e8]/10">
-                                            <Film size={32} />
+                                            {proj.category === "Model Shoot" ? <Camera size={32} /> : <Film size={32} />}
                                             <span className="text-xs tracking-wider uppercase">{proj.category}</span>
                                         </div>
                                     )}
@@ -347,8 +427,8 @@ export default function Filmmaking() {
                                     key={tab}
                                     onClick={() => setGalleryFilter(tab)}
                                     className={`px-4 py-1.5 rounded-full text-xs font-medium tracking-wider uppercase transition-all duration-200 border ${galleryFilter === tab
-                                            ? "border-[#c9a84c] bg-[#c9a84c]/15 text-[#c9a84c]"
-                                            : "border-[#f5f0e8]/10 text-[#f5f0e8]/30 hover:border-[#f5f0e8]/20 hover:text-[#f5f0e8]/50"
+                                        ? "border-[#c9a84c] bg-[#c9a84c]/15 text-[#c9a84c]"
+                                        : "border-[#f5f0e8]/10 text-[#f5f0e8]/30 hover:border-[#f5f0e8]/20 hover:text-[#f5f0e8]/50"
                                         }`}
                                 >
                                     {tab === "all" ? "All" : tab === "photo" ? "Photos" : "Videos"}
@@ -452,7 +532,7 @@ export default function Filmmaking() {
                     viewport={{ once: true }}
                 >
                     <p className="text-[#f5f0e8]/40 mb-8 max-w-lg mx-auto">
-                        Have a project in mind? Whether it's a short film, music video, or brand story — I'd love to hear about it.
+                        Have a project in mind? Whether it's a model photo shoot, short film, music video, or brand story — I'd love to hear about it.
                     </p>
 
                     <div className="flex flex-wrap justify-center gap-4 mb-10">
