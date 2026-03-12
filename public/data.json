@@ -1,0 +1,169 @@
+{
+  "profile": {
+    "name": "Nevil Amraniya",
+    "tagline": "AI / ML Enthusiast & CS Student — building intelligent systems, one model at a time.",
+    "location": "Essen, Germany",
+    "email": "framesofnevil@gmail.com",
+    "githubUsername": "niks1107",
+    "aboutText": "I'm passionate about Artificial Intelligence and Machine Learning — eager to explore data, build predictive models, and create impactful applications. Currently pursuing a BSc in Computer Science and Digital Technologies at FOM University of Applied Sciences, Essen, Germany. I love turning complex data into tangible solutions and I'm constantly looking to collaborate on open-source AI projects."
+  },
+  "socials": [
+    {
+      "platform": "Instagram",
+      "url": "https://www.instagram.com/nevilamraniya07"
+    },
+    {
+      "platform": "LinkedIn",
+      "url": "https://www.linkedin.com/in/nevil-amraniya-51b202317/"
+    },
+    {
+      "platform": "Twitter",
+      "url": "https://twitter.com/nevilamraniya01"
+    },
+    {
+      "platform": "Medium",
+      "url": "https://medium.com/@qnztrrfn"
+    }
+  ],
+  "skills": [
+    {
+      "name": "Python",
+      "category": "Lang"
+    },
+    {
+      "name": "Java",
+      "category": "Lang"
+    },
+    {
+      "name": "NumPy",
+      "category": "Data"
+    },
+    {
+      "name": "Pandas",
+      "category": "Data"
+    },
+    {
+      "name": "Matplotlib",
+      "category": "Data"
+    },
+    {
+      "name": "scikit-learn",
+      "category": "ML"
+    },
+    {
+      "name": "TensorFlow",
+      "category": "ML"
+    },
+    {
+      "name": "PyTorch",
+      "category": "ML"
+    },
+    {
+      "name": "Keras",
+      "category": "ML"
+    },
+    {
+      "name": "Flask",
+      "category": "Web"
+    },
+    {
+      "name": "Statistics",
+      "category": "Math"
+    },
+    {
+      "name": "Calculus",
+      "category": "Math"
+    }
+  ],
+  "education": [
+    {
+      "degree": "BSc in Computer Science and Digital Technologies",
+      "school": "FOM University of Applied Sciences",
+      "location": "Essen, Germany",
+      "years": "2025 – 2028"
+    },
+    {
+      "degree": "Diploma in Computer Engineering",
+      "school": "Government Polytechnic Jamnagar",
+      "location": "India",
+      "years": "2019 – 2023"
+    }
+  ],
+  "experience": [
+    {
+      "title": "Machine Learning Intern",
+      "company": "Acme Corp",
+      "location": "Berlin, Germany",
+      "from": "Jun 2024",
+      "to": "Aug 2024",
+      "url": "https://acme.com",
+      "bullets": [
+        "Built a recommendation engine with PyTorch, improving CTR by 12%.",
+        "Automated data-cleaning pipeline reducing preprocessing time by 40%.",
+        "Collaborated with a cross-functional team of 6 engineers."
+      ]
+    }
+  ],
+  "certifications": [
+    {
+      "title": "Programming for Everybody (Getting Started with Python)",
+      "issuer": "Coursera",
+      "org": "University of Michigan",
+      "date": "2024",
+      "url": "https://coursera.org/share/d86f4ffa4d9ec06db9ae38498592457c",
+      "platform": "coursera"
+    }
+  ],
+  "currentProject": {
+    "title": "QLess",
+    "description": "A queue management system designed to reduce wait times and improve customer experience through smart scheduling and real-time updates.",
+    "url": "https://github.com/niks1107/QLess",
+    "status": "In Progress"
+  },
+  "repoVisibility": [
+    {
+      "name": "Portfolio",
+      "visible": false
+    },
+    {
+      "name": "Weather-App",
+      "visible": true
+    },
+    {
+      "name": "EverTrack",
+      "visible": true
+    },
+    {
+      "name": "Restaurant",
+      "visible": true
+    },
+    {
+      "name": "paradise-wallpaper",
+      "visible": true
+    },
+    {
+      "name": "deutsch-easy-play",
+      "visible": true
+    },
+    {
+      "name": "FreshMart",
+      "visible": true
+    },
+    {
+      "name": "codingsols",
+      "visible": true
+    },
+    {
+      "name": "the-Air-Cafe",
+      "visible": true
+    },
+    {
+      "name": "Niks1107",
+      "visible": false
+    },
+    {
+      "name": "brew",
+      "visible": false
+    }
+  ]
+}
