@@ -285,6 +285,84 @@
         "url": "/gallery/story-portrait.jpg",
         "thumbnail": "/gallery/story-portrait.jpg",
         "title": "Story"
+      },
+      {
+        "type": "photo",
+        "url": "/gallery/model-portrait-3.jpg",
+        "thumbnail": "/gallery/model-portrait-3.jpg",
+        "title": "Elegance"
+      },
+      {
+        "type": "photo",
+        "url": "/gallery/model-portrait-4.jpg",
+        "thumbnail": "/gallery/model-portrait-4.jpg",
+        "title": "Poise"
+      },
+      {
+        "type": "photo",
+        "url": "/gallery/creative-portrait-4.jpg",
+        "thumbnail": "/gallery/creative-portrait-4.jpg",
+        "title": "Expression"
+      },
+      {
+        "type": "photo",
+        "url": "/gallery/creative-portrait-5.jpg",
+        "thumbnail": "/gallery/creative-portrait-5.jpg",
+        "title": "Silhouette"
+      },
+      {
+        "type": "photo",
+        "url": "/gallery/creative-portrait-6.jpg",
+        "thumbnail": "/gallery/creative-portrait-6.jpg",
+        "title": "Contrast"
+      },
+      {
+        "type": "photo",
+        "url": "/gallery/model-landscape-3.jpg",
+        "thumbnail": "/gallery/model-landscape-3.jpg",
+        "title": "Wide Shot"
+      },
+      {
+        "type": "photo",
+        "url": "/gallery/edited-post-4.jpg",
+        "thumbnail": "/gallery/edited-post-4.jpg",
+        "title": "Tones"
+      },
+      {
+        "type": "photo",
+        "url": "/gallery/edited-post-5.jpg",
+        "thumbnail": "/gallery/edited-post-5.jpg",
+        "title": "Warmth"
+      },
+      {
+        "type": "photo",
+        "url": "/gallery/edited-post-6.jpg",
+        "thumbnail": "/gallery/edited-post-6.jpg",
+        "title": "Detail"
+      },
+      {
+        "type": "photo",
+        "url": "/gallery/square-portrait-1.jpg",
+        "thumbnail": "/gallery/square-portrait-1.jpg",
+        "title": "Focus"
+      },
+      {
+        "type": "photo",
+        "url": "/gallery/candid-portrait-1.jpg",
+        "thumbnail": "/gallery/candid-portrait-1.jpg",
+        "title": "Candid"
+      },
+      {
+        "type": "photo",
+        "url": "/gallery/candid-portrait-2.jpg",
+        "thumbnail": "/gallery/candid-portrait-2.jpg",
+        "title": "Natural"
+      },
+      {
+        "type": "photo",
+        "url": "/gallery/square-portrait-2.jpg",
+        "thumbnail": "/gallery/square-portrait-2.jpg",
+        "title": "Frame"
       }
     ]
   },
