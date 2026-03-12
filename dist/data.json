@@ -167,42 +167,40 @@
         "category": "Short Film",
         "year": "2025",
         "description": "A visual poem exploring solitude in city life.",
-        "thumbnail": "/gallery/cinematic-landscape.jpg"
+        "thumbnail": "/gallery/cinematic-landscape.jpg",
+        "gallery": ["/gallery/cinematic-landscape.jpg", "/gallery/model-landscape-3.jpg", "/gallery/story-portrait.jpg"]
       },
       {
-        "title": "Golden Hour",
-        "category": "Music Video",
+        "title": "Golden Hour Session",
+        "category": "Model Shoot",
         "year": "2025",
-        "description": "Cinematic music video shot during golden hour across three locations.",
-        "thumbnail": "/gallery/model-landscape-1.jpg"
+        "description": "Professional model photography captured during golden hour — warm tones, natural light, and cinematic framing across outdoor locations.",
+        "thumbnail": "/gallery/model-landscape-1.jpg",
+        "gallery": ["/gallery/model-landscape-1.jpg", "/gallery/model-landscape-2.jpg", "/gallery/model-portrait-1.jpg", "/gallery/model-portrait-2.jpg", "/gallery/model-portrait-3.jpg", "/gallery/model-portrait-4.jpg", "/gallery/model-landscape-3.jpg"]
       },
       {
-        "title": "Wanderlust",
-        "category": "Travel Film",
+        "title": "Creative Portraits",
+        "category": "Model Shoot",
+        "year": "2025",
+        "description": "Artistic portrait session with bold compositions, dramatic lighting, and expressive poses — pushing the boundaries of creative photography.",
+        "thumbnail": "/gallery/creative-portrait-1.jpg",
+        "gallery": ["/gallery/creative-portrait-1.jpg", "/gallery/creative-portrait-2.jpg", "/gallery/creative-portrait-3.jpg", "/gallery/creative-portrait-4.jpg", "/gallery/creative-portrait-5.jpg", "/gallery/creative-portrait-6.jpg"]
+      },
+      {
+        "title": "Editorial Collection",
+        "category": "Model Shoot",
+        "year": "2025",
+        "description": "Curated editorial portraits with refined color grading, mood-driven tones, and fashion-forward styling for social media and print.",
+        "thumbnail": "/gallery/edited-post-1.jpg",
+        "gallery": ["/gallery/edited-post-1.jpg", "/gallery/edited-post-2.jpg", "/gallery/edited-post-3.jpg", "/gallery/edited-post-4.jpg", "/gallery/edited-post-5.jpg", "/gallery/edited-post-6.jpg"]
+      },
+      {
+        "title": "Behind the Lens",
+        "category": "Candid",
         "year": "2024",
-        "description": "A travel documentary capturing the spirit of backpacking through Europe.",
-        "thumbnail": "/gallery/model-landscape-2.jpg"
-      },
-      {
-        "title": "Elegance in Motion",
-        "category": "Model Shoot",
-        "year": "2025",
-        "description": "A high-fashion editorial shoot blending movement and minimalism in urban architecture.",
-        "thumbnail": "/gallery/model-portrait-1.jpg"
-      },
-      {
-        "title": "Natural Light Portraits",
-        "category": "Model Shoot",
-        "year": "2025",
-        "description": "Golden hour portrait session capturing raw emotion and natural beauty outdoors.",
-        "thumbnail": "/gallery/creative-portrait-1.jpg"
-      },
-      {
-        "title": "Studio Sessions Vol. 1",
-        "category": "Model Shoot",
-        "year": "2026",
-        "description": "Creative studio portraits with dramatic lighting and bold color palettes.",
-        "thumbnail": "/gallery/creative-portrait-3.jpg"
+        "description": "Raw, unposed moments captured between takes — the authentic side of every shoot, from candid expressions to natural interactions.",
+        "thumbnail": "/gallery/candid-portrait-1.jpg",
+        "gallery": ["/gallery/candid-portrait-1.jpg", "/gallery/candid-portrait-2.jpg", "/gallery/square-portrait-1.jpg", "/gallery/square-portrait-2.jpg"]
       }
     ],
     "socialInstagram": "",

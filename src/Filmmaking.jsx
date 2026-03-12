@@ -53,6 +53,7 @@ export default function Filmmaking() {
     const [galleryFilter, setGalleryFilter] = useState("all");
     const [lightbox, setLightbox] = useState(null);
     const [projectFilter, setProjectFilter] = useState("all");
+    const [selectedProject, setSelectedProject] = useState(null);
     const [reels, setReels] = useState([]);
     const [reelsLoading, setReelsLoading] = useState(false);
 
@@ -71,9 +72,9 @@ export default function Filmmaking() {
         equipment = ["Sony A7III", "DJI RS3", "DaVinci Resolve", "85mm f/1.4 Lens", "Studio Lighting Kit"],
         services = [],
         projects = [
-            { title: "Urban Echoes", category: "Short Film", year: "2025", description: "A visual poem exploring solitude in city life.", thumbnail: "" },
-            { title: "Golden Hour", category: "Music Video", year: "2025", description: "Cinematic music video shot during golden hour across three locations.", thumbnail: "" },
-            { title: "Wanderlust", category: "Travel Film", year: "2024", description: "A travel documentary capturing the spirit of backpacking through Europe.", thumbnail: "" },
+            { title: "Urban Echoes", category: "Short Film", year: "2025", description: "A visual poem exploring solitude in city life.", thumbnail: "", gallery: [] },
+            { title: "Golden Hour Session", category: "Model Shoot", year: "2025", description: "Professional model photography captured during golden hour.", thumbnail: "", gallery: [] },
+            { title: "Creative Portraits", category: "Model Shoot", year: "2025", description: "Artistic portrait session with bold compositions.", thumbnail: "", gallery: [] },
         ],
         socialInstagram = "",
         socialYouTube = "",
@@ -393,12 +394,13 @@ export default function Filmmaking() {
                                 key={proj.title}
                                 variants={fadeUp}
                                 custom={i}
-                                className="group relative rounded-2xl overflow-hidden border border-[#f5f0e8]/8 bg-[#111] film-card cursor-default"
+                                onClick={() => setSelectedProject(proj)}
+                                className="group relative rounded-2xl overflow-hidden border border-[#f5f0e8]/8 bg-[#111] film-card cursor-pointer"
                             >
                                 {/* Thumbnail / placeholder */}
                                 <div className="aspect-[16/10] bg-gradient-to-br from-[#1a1a1a] to-[#111] flex items-center justify-center relative overflow-hidden">
                                     {proj.thumbnail ? (
-                                        <img src={proj.thumbnail} alt={proj.title} className="w-full h-full object-cover" />
+                                        <img src={proj.thumbnail} alt={proj.title} className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-105" />
                                     ) : (
                                         <div className="flex flex-col items-center gap-2 text-[#f5f0e8]/10">
                                             {proj.category === "Model Shoot" ? <Camera size={32} /> : <Film size={32} />}
@@ -408,7 +410,7 @@ export default function Filmmaking() {
                                     {/* Hover overlay */}
                                     <div className="absolute inset-0 bg-black/60 opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex items-center justify-center">
                                         <div className="w-12 h-12 rounded-full border-2 border-[#c9a84c] flex items-center justify-center">
-                                            <Play size={18} className="text-[#c9a84c] ml-0.5" fill="currentColor" />
+                                            <Image size={18} className="text-[#c9a84c]" />
                                         </div>
                                     </div>
                                 </div>
@@ -417,7 +419,14 @@ export default function Filmmaking() {
                                 <div className="p-5">
                                     <div className="flex items-center justify-between mb-2">
                                         <span className="text-[10px] tracking-wider uppercase text-[#c9a84c]/60">{proj.category}</span>
-                                        <span className="text-[10px] text-[#f5f0e8]/30">{proj.year}</span>
+                                        <div className="flex items-center gap-2">
+                                            {proj.gallery && proj.gallery.length > 0 && (
+                                                <span className="text-[10px] text-[#f5f0e8]/30 flex items-center gap-1">
+                                                    <Image size={10} /> {proj.gallery.length}
+                                                </span>
+                                            )}
+                                            <span className="text-[10px] text-[#f5f0e8]/30">{proj.year}</span>
+                                        </div>
                                     </div>
                                     <h3 className="font-semibold text-base text-[#f5f0e8]/90 mb-1" style={{ fontFamily: "'Playfair Display', serif" }}>
                                         {proj.title}
@@ -603,6 +612,85 @@ export default function Filmmaking() {
                             )}
                             {lightbox.title && (
                                 <div className="text-center mt-3 text-sm text-[#f5f0e8]/50">{lightbox.title}</div>
+                            )}
+                        </motion.div>
+                    </motion.div>
+                )}
+            </AnimatePresence>
+
+            {/* ── Project Detail Modal ─────────────────────────────────── */}
+            <AnimatePresence>
+                {selectedProject && (
+                    <motion.div
+                        initial={{ opacity: 0 }}
+                        animate={{ opacity: 1 }}
+                        exit={{ opacity: 0 }}
+                        className="fixed inset-0 z-50 bg-black/95 backdrop-blur-sm overflow-y-auto"
+                        onClick={() => setSelectedProject(null)}
+                    >
+                        <button
+                            className="fixed top-4 right-4 w-10 h-10 rounded-full bg-white/10 flex items-center justify-center text-white/60 hover:text-white transition z-[60]"
+                            onClick={() => setSelectedProject(null)}
+                        >
+                            <X size={20} />
+                        </button>
+                        <motion.div
+                            initial={{ y: 40, opacity: 0 }}
+                            animate={{ y: 0, opacity: 1 }}
+                            exit={{ y: 40, opacity: 0 }}
+                            transition={{ duration: 0.4, ease: "easeOut" }}
+                            className="max-w-5xl mx-auto px-6 py-16"
+                            onClick={(e) => e.stopPropagation()}
+                        >
+                            {/* Header */}
+                            <div className="mb-10">
+                                <div className="flex items-center gap-3 mb-3">
+                                    <span className="text-xs tracking-wider uppercase text-[#c9a84c]/70">{selectedProject.category}</span>
+                                    <span className="text-xs text-[#f5f0e8]/20">•</span>
+                                    <span className="text-xs text-[#f5f0e8]/30">{selectedProject.year}</span>
+                                </div>
+                                <h2
+                                    className="text-3xl md:text-4xl font-bold mb-4"
+                                    style={{
+                                        fontFamily: "'Playfair Display', serif",
+                                        background: "linear-gradient(135deg, #c9a84c, #f5d98a)",
+                                        WebkitBackgroundClip: "text",
+                                        WebkitTextFillColor: "transparent",
+                                    }}
+                                >
+                                    {selectedProject.title}
+                                </h2>
+                                <p className="text-sm md:text-base text-[#f5f0e8]/50 max-w-2xl leading-relaxed">
+                                    {selectedProject.description}
+                                </p>
+                            </div>
+
+                            {/* Gallery grid */}
+                            {selectedProject.gallery && selectedProject.gallery.length > 0 ? (
+                                <div className="columns-1 sm:columns-2 lg:columns-3 gap-4 space-y-4">
+                                    {selectedProject.gallery.map((src, idx) => (
+                                        <motion.div
+                                            key={src}
+                                            initial={{ opacity: 0, y: 20 }}
+                                            animate={{ opacity: 1, y: 0 }}
+                                            transition={{ delay: idx * 0.08, duration: 0.4 }}
+                                            className="break-inside-avoid rounded-xl overflow-hidden border border-[#f5f0e8]/8 cursor-pointer group"
+                                            onClick={() => setLightbox({ url: src, title: `${selectedProject.title} — ${idx + 1}` })}
+                                        >
+                                            <img
+                                                src={src}
+                                                alt={`${selectedProject.title} — ${idx + 1}`}
+                                                className="w-full object-cover transition-transform duration-500 group-hover:scale-105"
+                                                loading="lazy"
+                                            />
+                                        </motion.div>
+                                    ))}
+                                </div>
+                            ) : (
+                                <div className="flex flex-col items-center justify-center py-20 text-[#f5f0e8]/20">
+                                    <Image size={48} className="mb-3" />
+                                    <p className="text-sm">No images in this project yet</p>
+                                </div>
                             )}
                         </motion.div>
                     </motion.div>
