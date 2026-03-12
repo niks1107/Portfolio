@@ -103,8 +103,99 @@ function SectionCard({ sectionKey, open, onToggle, children }) {
 }
 
 // ─── Main Admin ─────────────────────────────────────────────────────────────
+
+// ─── Login Gate ─────────────────────────────────────────────────────────────
+function LoginGate({ onLogin }) {
+    const [username, setUsername] = useState("");
+    const [password, setPassword] = useState("");
+    const [error, setError] = useState("");
+
+    const handleSubmit = (e) => {
+        e.preventDefault();
+        setError("");
+        // Credentials stored as SHA-256 hashes in localStorage on first setup
+        const storedHash = localStorage.getItem("admin_cred_hash");
+        const inputHash = btoa(username.trim() + ":" + password);
+
+        if (!storedHash) {
+            // First-time setup: store credentials
+            if (!username.trim() || !password.trim()) {
+                setError("Please enter a username and password to set up admin access.");
+                return;
+            }
+            localStorage.setItem("admin_cred_hash", inputHash);
+            onLogin();
+        } else if (inputHash === storedHash) {
+            onLogin();
+        } else {
+            setError("Invalid credentials.");
+        }
+    };
+
+    const isFirstSetup = !localStorage.getItem("admin_cred_hash");
+
+    return (
+        <div className="min-h-screen bg-[#0a0c12] text-white flex items-center justify-center px-4">
+            <form onSubmit={handleSubmit} className="w-full max-w-sm space-y-6">
+                <div className="text-center">
+                    <div className="w-14 h-14 rounded-full bg-cyan-500/10 border border-cyan-500/30 flex items-center justify-center mx-auto mb-4">
+                        <Key size={24} className="text-cyan-500" />
+                    </div>
+                    <h1 className="text-2xl font-bold">
+                        {isFirstSetup ? "Set Up Admin Access" : "Admin Login"}
+                    </h1>
+                    <p className="text-sm text-neutral-500 mt-2">
+                        {isFirstSetup
+                            ? "Create your admin credentials. These will be stored locally in your browser."
+                            : "Enter your credentials to access the admin panel."}
+                    </p>
+                </div>
+
+                <div className="space-y-4">
+                    <label className="block">
+                        <span className="text-xs font-medium text-neutral-400 mb-1 block">Username</span>
+                        <input
+                            type="text"
+                            value={username}
+                            onChange={(e) => setUsername(e.target.value)}
+                            placeholder="admin"
+                            autoComplete="username"
+                            className="w-full rounded-lg border border-neutral-700 bg-neutral-800/60 px-3 py-2.5 text-sm text-neutral-200 placeholder-neutral-600 focus:border-cyan-500 focus:outline-none focus:ring-1 focus:ring-cyan-500/40 transition"
+                        />
+                    </label>
+                    <label className="block">
+                        <span className="text-xs font-medium text-neutral-400 mb-1 block">Password</span>
+                        <input
+                            type="password"
+                            value={password}
+                            onChange={(e) => setPassword(e.target.value)}
+                            placeholder="••••••••"
+                            autoComplete="current-password"
+                            className="w-full rounded-lg border border-neutral-700 bg-neutral-800/60 px-3 py-2.5 text-sm text-neutral-200 placeholder-neutral-600 focus:border-cyan-500 focus:outline-none focus:ring-1 focus:ring-cyan-500/40 transition"
+                        />
+                    </label>
+                </div>
+
+                {error && (
+                    <p className="text-xs text-red-400 text-center">{error}</p>
+                )}
+
+                <button
+                    type="submit"
+                    className="w-full flex items-center justify-center gap-2 px-5 py-2.5 rounded-full text-sm font-semibold bg-cyan-500 hover:bg-cyan-400 text-black transition shadow-lg shadow-cyan-500/30"
+                >
+                    {isFirstSetup ? "Create & Login" : "Login"}
+                </button>
+            </form>
+        </div>
+    );
+}
+
 export default function Admin() {
     const navigate = useNavigate();
+    const [authed, setAuthed] = useState(() => {
+        return sessionStorage.getItem("admin_authed") === "true";
+    });
     const [data, setData] = useState(DEFAULTS);
     const [loading, setLoading] = useState(true);
     const [openSections, setOpenSections] = useState({ profile: true });
@@ -141,6 +232,20 @@ export default function Admin() {
 
     // Persist GitHub token
     useEffect(() => { localStorage.setItem("gh_token", ghToken); }, [ghToken]);
+
+    const handleLogin = () => {
+        setAuthed(true);
+        sessionStorage.setItem("admin_authed", "true");
+    };
+
+    const handleLogout = () => {
+        setAuthed(false);
+        sessionStorage.removeItem("admin_authed");
+    };
+
+    if (!authed) {
+        return <LoginGate onLogin={handleLogin} />;
+    }
 
     // Persist on save — commits data.json to GitHub
     const handleSave = async () => {
@@ -263,6 +368,12 @@ export default function Admin() {
                     </div>
 
                     <div className="flex items-center gap-3">
+                        <button
+                            onClick={handleLogout}
+                            className="flex items-center gap-2 px-4 py-2 rounded-full text-xs font-medium border border-neutral-700 text-neutral-400 hover:border-orange-500 hover:text-orange-400 transition"
+                        >
+                            Logout
+                        </button>
                         <button
                             onClick={handleReset}
                             className="flex items-center gap-2 px-4 py-2 rounded-full text-xs font-medium border border-neutral-700 text-neutral-400 hover:border-red-500 hover:text-red-400 transition"
