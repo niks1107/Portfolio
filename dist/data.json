@@ -107,7 +107,7 @@
     "status": "In Progress"
   },
   "filmmaking": {
-    "brandName": "Frames of Nevil",
+    "brandName": "Frames of Nick",
     "tagline": "Stories told through frames",
     "about": "When I'm not building AI models, I'm behind a camera — crafting cinematic stories, exploring visual narratives, and turning everyday moments into art. I also love working with models, capturing their essence through creative portrait and fashion photography.",
     "roles": [
@@ -163,12 +163,16 @@
     ],
     "projects": [
       {
-        "title": "Urban Echoes",
-        "category": "Short Film",
+        "title": "Cinematic Landscapes",
+        "category": "Landscape",
         "year": "2025",
-        "description": "A visual poem exploring solitude in city life.",
+        "description": "Wide cinematic frames capturing mood, depth, and atmosphere across outdoor locations.",
         "thumbnail": "/gallery/cinematic-landscape.jpg",
-        "gallery": ["/gallery/cinematic-landscape.jpg", "/gallery/model-landscape-3.jpg", "/gallery/story-portrait.jpg"]
+        "gallery": [
+          "/gallery/cinematic-landscape.jpg",
+          "/gallery/model-landscape-3.jpg",
+          "/gallery/story-portrait.jpg"
+        ]
       },
       {
         "title": "Golden Hour Session",
@@ -176,7 +180,15 @@
         "year": "2025",
         "description": "Professional model photography captured during golden hour — warm tones, natural light, and cinematic framing across outdoor locations.",
         "thumbnail": "/gallery/model-landscape-1.jpg",
-        "gallery": ["/gallery/model-landscape-1.jpg", "/gallery/model-landscape-2.jpg", "/gallery/model-portrait-1.jpg", "/gallery/model-portrait-2.jpg", "/gallery/model-portrait-3.jpg", "/gallery/model-portrait-4.jpg", "/gallery/model-landscape-3.jpg"]
+        "gallery": [
+          "/gallery/model-landscape-1.jpg",
+          "/gallery/model-landscape-2.jpg",
+          "/gallery/model-portrait-1.jpg",
+          "/gallery/model-portrait-2.jpg",
+          "/gallery/model-portrait-3.jpg",
+          "/gallery/model-portrait-4.jpg",
+          "/gallery/model-landscape-3.jpg"
+        ]
       },
       {
         "title": "Creative Portraits",
@@ -184,7 +196,14 @@
         "year": "2025",
         "description": "Artistic portrait session with bold compositions, dramatic lighting, and expressive poses — pushing the boundaries of creative photography.",
         "thumbnail": "/gallery/creative-portrait-1.jpg",
-        "gallery": ["/gallery/creative-portrait-1.jpg", "/gallery/creative-portrait-2.jpg", "/gallery/creative-portrait-3.jpg", "/gallery/creative-portrait-4.jpg", "/gallery/creative-portrait-5.jpg", "/gallery/creative-portrait-6.jpg"]
+        "gallery": [
+          "/gallery/creative-portrait-1.jpg",
+          "/gallery/creative-portrait-2.jpg",
+          "/gallery/creative-portrait-3.jpg",
+          "/gallery/creative-portrait-4.jpg",
+          "/gallery/creative-portrait-5.jpg",
+          "/gallery/creative-portrait-6.jpg"
+        ]
       },
       {
         "title": "Editorial Collection",
@@ -192,7 +211,14 @@
         "year": "2025",
         "description": "Curated editorial portraits with refined color grading, mood-driven tones, and fashion-forward styling for social media and print.",
         "thumbnail": "/gallery/edited-post-1.jpg",
-        "gallery": ["/gallery/edited-post-1.jpg", "/gallery/edited-post-2.jpg", "/gallery/edited-post-3.jpg", "/gallery/edited-post-4.jpg", "/gallery/edited-post-5.jpg", "/gallery/edited-post-6.jpg"]
+        "gallery": [
+          "/gallery/edited-post-1.jpg",
+          "/gallery/edited-post-2.jpg",
+          "/gallery/edited-post-3.jpg",
+          "/gallery/edited-post-4.jpg",
+          "/gallery/edited-post-5.jpg",
+          "/gallery/edited-post-6.jpg"
+        ]
       },
       {
         "title": "Behind the Lens",
@@ -200,7 +226,12 @@
         "year": "2024",
         "description": "Raw, unposed moments captured between takes — the authentic side of every shoot, from candid expressions to natural interactions.",
         "thumbnail": "/gallery/candid-portrait-1.jpg",
-        "gallery": ["/gallery/candid-portrait-1.jpg", "/gallery/candid-portrait-2.jpg", "/gallery/square-portrait-1.jpg", "/gallery/square-portrait-2.jpg"]
+        "gallery": [
+          "/gallery/candid-portrait-1.jpg",
+          "/gallery/candid-portrait-2.jpg",
+          "/gallery/square-portrait-1.jpg",
+          "/gallery/square-portrait-2.jpg"
+        ]
       }
     ],
     "socialInstagram": "",

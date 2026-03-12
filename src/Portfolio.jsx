@@ -595,7 +595,7 @@ export default function Portfolio() {
                     WebkitBackgroundClip: "text",
                     WebkitTextFillColor: "transparent",
                   }}>
-                    Frames of Nevil
+                    Frames of Nick
                   </h3>
                   <p className={`text-sm leading-relaxed max-w-md mb-6 ${isDark ? "text-neutral-400" : "text-neutral-600"}`}>
                     When I'm not building AI models, I'm behind a camera — crafting stories, one frame at a time.

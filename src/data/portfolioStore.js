@@ -96,7 +96,7 @@ const DEFAULTS = {
     },
 
     filmmaking: {
-        brandName: "Frames of Nevil",
+        brandName: "Frames of Nick",
         tagline: "Stories told through frames",
         about: "When I'm not building AI models, I'm behind a camera — crafting cinematic stories, exploring visual narratives, and turning everyday moments into art. I also love working with models, capturing their essence through creative portrait and fashion photography.",
         roles: ["Director", "Cinematographer", "Editor", "Model Photographer"],
@@ -107,7 +107,7 @@ const DEFAULTS = {
             { title: "Brand & Commercial Content", icon: "sparkles", description: "Visual content creation for brands and businesses — product shoots, promotional videos, and social media content.", features: ["Product Photography", "Promo Videos", "Social Media Content", "Brand Identity", "Event Coverage"] },
         ],
         projects: [
-            { title: "Urban Echoes", category: "Short Film", year: "2025", description: "A visual poem exploring solitude in city life.", thumbnail: "/gallery/cinematic-landscape.jpg", gallery: ["/gallery/cinematic-landscape.jpg", "/gallery/model-landscape-3.jpg", "/gallery/story-portrait.jpg"] },
+            { title: "Cinematic Landscapes", category: "Landscape", year: "2025", description: "Wide cinematic frames capturing mood, depth, and atmosphere across outdoor locations.", thumbnail: "/gallery/cinematic-landscape.jpg", gallery: ["/gallery/cinematic-landscape.jpg", "/gallery/model-landscape-3.jpg", "/gallery/story-portrait.jpg"] },
             { title: "Golden Hour Session", category: "Model Shoot", year: "2025", description: "Professional model photography captured during golden hour — warm tones, natural light, and cinematic framing across outdoor locations.", thumbnail: "/gallery/model-landscape-1.jpg", gallery: ["/gallery/model-landscape-1.jpg", "/gallery/model-landscape-2.jpg", "/gallery/model-portrait-1.jpg", "/gallery/model-portrait-2.jpg", "/gallery/model-portrait-3.jpg", "/gallery/model-portrait-4.jpg", "/gallery/model-landscape-3.jpg"] },
             { title: "Creative Portraits", category: "Model Shoot", year: "2025", description: "Artistic portrait session with bold compositions, dramatic lighting, and expressive poses — pushing the boundaries of creative photography.", thumbnail: "/gallery/creative-portrait-1.jpg", gallery: ["/gallery/creative-portrait-1.jpg", "/gallery/creative-portrait-2.jpg", "/gallery/creative-portrait-3.jpg", "/gallery/creative-portrait-4.jpg", "/gallery/creative-portrait-5.jpg", "/gallery/creative-portrait-6.jpg"] },
             { title: "Editorial Collection", category: "Model Shoot", year: "2025", description: "Curated editorial portraits with refined color grading, mood-driven tones, and fashion-forward styling for social media and print.", thumbnail: "/gallery/edited-post-1.jpg", gallery: ["/gallery/edited-post-1.jpg", "/gallery/edited-post-2.jpg", "/gallery/edited-post-3.jpg", "/gallery/edited-post-4.jpg", "/gallery/edited-post-5.jpg", "/gallery/edited-post-6.jpg"] },

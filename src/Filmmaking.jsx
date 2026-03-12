@@ -65,14 +65,14 @@ export default function Filmmaking() {
     }, []);
 
     const {
-        brandName = "Frames of Nevil",
+        brandName = "Frames of Nick",
         tagline = "Stories told through frames",
         about = "When I'm not building AI models, I'm behind a camera — crafting cinematic stories, exploring visual narratives, and turning everyday moments into art. I also love working with models, capturing their essence through creative portrait and fashion photography.",
         roles = ["Director", "Cinematographer", "Editor", "Model Photographer"],
         equipment = ["Sony A7III", "DJI RS3", "DaVinci Resolve", "85mm f/1.4 Lens", "Studio Lighting Kit"],
         services = [],
         projects = [
-            { title: "Urban Echoes", category: "Short Film", year: "2025", description: "A visual poem exploring solitude in city life.", thumbnail: "", gallery: [] },
+            { title: "Cinematic Landscapes", category: "Landscape", year: "2025", description: "Wide cinematic frames capturing mood, depth, and atmosphere.", thumbnail: "", gallery: [] },
             { title: "Golden Hour Session", category: "Model Shoot", year: "2025", description: "Professional model photography captured during golden hour.", thumbnail: "", gallery: [] },
             { title: "Creative Portraits", category: "Model Shoot", year: "2025", description: "Artistic portrait session with bold compositions.", thumbnail: "", gallery: [] },
         ],
