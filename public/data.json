@@ -89,21 +89,7 @@
       "years": "2019 – 2023"
     }
   ],
-  "experience": [
-    {
-      "title": "Machine Learning Intern",
-      "company": "Acme Corp",
-      "location": "Berlin, Germany",
-      "from": "Jun 2024",
-      "to": "Aug 2024",
-      "url": "https://acme.com",
-      "bullets": [
-        "Built a recommendation engine with PyTorch, improving CTR by 12%.",
-        "Automated data-cleaning pipeline reducing preprocessing time by 40%.",
-        "Collaborated with a cross-functional team of 6 engineers."
-      ]
-    }
-  ],
+  "experience": [],
   "certifications": [
     {
       "title": "Programming for Everybody (Getting Started with Python)",
@@ -119,6 +105,49 @@
     "description": "A queue management system designed to reduce wait times and improve customer experience through smart scheduling and real-time updates.",
     "url": "https://github.com/niks1107/QLess",
     "status": "In Progress"
+  },
+  "filmmaking": {
+    "brandName": "Frames of Nevil",
+    "tagline": "Stories told through frames",
+    "about": "When I'm not building AI models, I'm behind a camera — crafting cinematic stories, exploring visual narratives, and turning everyday moments into art.",
+    "roles": [
+      "Director",
+      "Cinematographer",
+      "Editor"
+    ],
+    "equipment": [
+      "Sony A7III",
+      "DJI RS3",
+      "DaVinci Resolve"
+    ],
+    "projects": [
+      {
+        "title": "Urban Echoes",
+        "category": "Short Film",
+        "year": "2025",
+        "description": "A visual poem exploring solitude in city life.",
+        "thumbnail": ""
+      },
+      {
+        "title": "Golden Hour",
+        "category": "Music Video",
+        "year": "2025",
+        "description": "Cinematic music video shot during golden hour across three locations.",
+        "thumbnail": ""
+      },
+      {
+        "title": "Wanderlust",
+        "category": "Travel Film",
+        "year": "2024",
+        "description": "A travel documentary capturing the spirit of backpacking through Europe.",
+        "thumbnail": ""
+      }
+    ],
+    "socialInstagram": "",
+    "socialYouTube": "",
+    "contactEmail": "framesofnevil@gmail.com",
+    "availability": "Currently booking for 2026",
+    "showreelUrl": ""
   },
   "repoVisibility": [
     {
