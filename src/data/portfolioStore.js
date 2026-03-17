@@ -6,7 +6,7 @@
  * creates a commit so the hosted site updates on rebuild.
  */
 
-const GITHUB_OWNER = "niks1107";
+const GITHUB_OWNER = "nevil-codes";
 const GITHUB_REPO = "Portfolio";
 const DATA_PATH = "public/data.json";                // path inside the repo
 const GITHUB_API = "https://api.github.com";
@@ -18,7 +18,7 @@ const DEFAULTS = {
             "AI / ML Enthusiast & CS Student — building intelligent systems, one model at a time.",
         location: "Essen, Germany",
         email: "framesofnevil@gmail.com",
-        githubUsername: "niks1107",
+        githubUsername: "nevil-codes",
         aboutText:
             "I'm passionate about Artificial Intelligence and Machine Learning — eager to explore data, build predictive models, and create impactful applications. Currently pursuing a BSc in Computer Science and Digital Technologies at FOM University of Applied Sciences, Essen, Germany. I love turning complex data into tangible solutions and I'm constantly looking to collaborate on open-source AI projects.",
     },
@@ -91,7 +91,7 @@ const DEFAULTS = {
         title: "QLess",
         description:
             "A queue management system designed to reduce wait times and improve customer experience through smart scheduling and real-time updates.",
-        url: "https://github.com/niks1107/QLess",
+        url: "https://github.com/nevil-codes/QLess",
         status: "In Progress",
     },
 
@@ -160,7 +160,7 @@ const DEFAULTS = {
         { name: "FreshMart", visible: true },
         { name: "codingsols", visible: true },
         { name: "the-Air-Cafe", visible: true },
-        { name: "Niks1107", visible: false },
+        { name: "nevil-codes", visible: false },
         { name: "brew", visible: false },
     ],
 };

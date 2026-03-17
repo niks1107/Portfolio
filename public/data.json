@@ -4,7 +4,7 @@
     "tagline": "AI / ML Enthusiast & CS Student — building intelligent systems, one model at a time.",
     "location": "Essen, Germany",
     "email": "framesofnevil@gmail.com",
-    "githubUsername": "niks1107",
+    "githubUsername": "nevil-codes",
     "aboutText": "I'm passionate about Artificial Intelligence and Machine Learning — eager to explore data, build predictive models, and create impactful applications. Currently pursuing a BSc in Computer Science and Digital Technologies at FOM University of Applied Sciences, Essen, Germany. I love turning complex data into tangible solutions and I'm constantly looking to collaborate on open-source AI projects."
   },
   "socials": [
@@ -103,7 +103,7 @@
   "currentProject": {
     "title": "QLess",
     "description": "A queue management system designed to reduce wait times and improve customer experience through smart scheduling and real-time updates.",
-    "url": "https://github.com/niks1107/QLess",
+    "url": "https://github.com/nevil-codes/QLess",
     "status": "In Progress"
   },
   "filmmaking": {
@@ -433,7 +433,7 @@
       "visible": true
     },
     {
-      "name": "Niks1107",
+      "name": "nevil-codes",
       "visible": false
     },
     {

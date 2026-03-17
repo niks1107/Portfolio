@@ -22,7 +22,7 @@ const REPO_CONFIG = [
     { name: "FreshMart", visible: true },
     { name: "codingsols", visible: true },
     { name: "the-Air-Cafe", visible: true },
-    { name: "Niks1107", visible: false }, // profile README — usually hidden
+    { name: "nevil-codes", visible: false }, // profile README — usually hidden
     { name: "brew", visible: false }, // fork — usually hidden
 ];
 
